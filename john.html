@@ -22,7 +22,6 @@
                 border-color: lightgray;
                 border-radius: 6px;
                 width:100%;
-                height: 600px;
             }
 			
 		</style>
@@ -32,28 +31,65 @@
 		
 		<div class="container">
             <h1>John's Page</h1>
-            <hr />
+           
             <div id="myMainContainter">        
-                <a href="https://github.com/johnRedden" target="_blank">My GitHub Page</a> Follow me!
-                <hr />
-                <div class="btn btn-default">This Bootstap Button Does Nothing!</div>
-                <br /><br />
-                <strong>Play with Bootstrap!</strong>  It's totally fun: 
+                <a href="https://github.com/johnRedden" target="_blank">My GitHub Page</a> Follow me! 
+                Email: jtredden@gmail.com<br />
+                <strong>Play with Bootstrap!</strong>  It's totally fun:
                 <a href="http://www.w3schools.com/bootstrap/bootstrap_typography.asp" target="_blank">Learn Bootstrap</a> 
+
                 <hr />
-                <div id="goBackBtn" class="btn btn-default">Go Back</div>
+
+                <!-- Code for day 1 math app starts here, javascript/JQuery below-->
+                <h2>Our Day 1 Math App</h2>
+                <div class="panel panel-default center-block" style="width:50%;text-align:center">
+                    <div class="panel-heading"><strong>Number Squarer</strong></div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="userInput">Enter a Number</label>
+                                <input class="form-control center-block input-lg" id="userInput" type="text" style="width:25%" placeholder="#">
+                            </div>
+                        </form>
+                        <span id="output"><em>Results will appear here.</em></span>
+                    </div>
+                </div>
+                <!-- End App 1 HTML-->
+                <div class="text-info">
+                    <span class="glyphicon glyphicon-alert"></span>
+                    Have a look at the source. I challenge you to make a simple app on your web page or improve this one.
+                </div>
+                <hr />
+                <!--Bootstrap way to make a back button
+                    Basically, an anchor tag with a btn class attached to it! -->
+                Bootstrap way to make a back button: <a href="index.html" class="btn btn-default">Home</a>
+                
+                <hr />
             </div>
             
         </div>
 
         <script>
-            //Add event listener to the Go Back button using JQuery
-            $('#goBackBtn').on('click', goBackFunction);
 
-            // regular old javascript function below does not use JQuery
-            function goBackFunction() {
-                //regular javascript to send to the page
-                window.location.href = "index.html";
+            // Add keyup listener to the input box
+            $('#userInput').on('keyup', squareResults);
+
+            function squareResults() {
+                // get the value string from the input text box and convert it to a float (real number)
+                var n = parseFloat($('#userInput').val());
+
+                // do the math and build the output string
+                var outputDisplayStr;
+                if(isNaN(n)){
+                    outputDisplayStr = "Enter a number!"
+                }else{
+                    outputDisplayStr = n + "^2 = " + Math.pow(n, 2);
+                }
+                
+                // set the html of the output span to the result.
+                $('#output').html(outputDisplayStr);
+
+                // This is very basic, there are many ways to do this! Paul can do it in one line I bet.
             };
         </script>
 		
