@@ -40,7 +40,10 @@
             Move A and B around. <br />
             Right click to view the source and read the tutorial.
         </div>
-        
+        <div id="linea"></div>
+        <div id="lineb"></div>
+        <div id="linec"></div>
+        </div>
     </div>
 
     <script>
@@ -50,22 +53,37 @@
             // Step 1: Begin by initializing the jsxGraph and set a reference to it called board or whatever you want.
             // Lots of options (called attributes) to choose from
             // takes some getting used to... but here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/JXG.Board.html
-           var board = JXG.JSXGraph.initBoard('myBox',
-                    {
-                        boundingbox:[-4,4,4,-4],
-                        axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
-                        grid: { strokeWidth: 0.75 },
-                        showCopyright: false,
-                        showNavigation: false,
-                        keepaspectratio: true //square graph coming in
-                    });
+            var board = JXG.JSXGraph.initBoard('myBox',
+                     {
+                         boundingbox:[-4,4,4,-4],
+                         axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                         grid: { strokeWidth: 0.75 },
+                         showCopyright: false,
+                         showNavigation: false,
+                         keepaspectratio: true //square graph coming in
+                     });
 
             // Step 2: add some graphs.  I suppose we start with points.
             // Here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Point.html
 
-            var p1 = board.create('point', [4, 2], { color: 'red' });
-            var p2 = board.create('point', [3, -2], { color: 'green' });
-            var p3 = board.create('point', [0, 0], { color: 'blue', fixed:true });
+            var p1 = board.create('point', [4, 2], { color: 'red' }).on('drag',function(){
+                $('#lineb').html("b=" + L1.L().toFixed(4));
+                $('#linec').html("c=" + s1.L().toFixed(4));
+                s1.setLabelText("c=" + s1.L().toFixed(4));
+                L1.setLabelText("b=" + L1.L().toFixed(4));
+            });
+            var p2 = board.create('point', [3, -2], { color: 'green' }).on('drag', function () {
+                $('#linec').html("c=" + s1.L().toFixed(4));
+                $('#linea').html("a=" + L2.L().toFixed(4));
+                s1.setLabelText("c=" + s1.L().toFixed(4));
+                L2.setLabelText("a=" + L2.L().toFixed(4));
+            });
+            var p3 = board.create('point', [0, 0], { color: 'blue' }).on('drag',  function () {
+                $('#linea').html("a=" + L2.L().toFixed(4));
+                $('#lineb').html("b=" + L1.L().toFixed(4));
+                L2.setLabelText("a=" + L2.L().toFixed(4));
+                L1.setLabelText("b=" + L1.L().toFixed(4));
+            });
 
             // Notice that I have varaibles p1, p2, and p3 holding reference to these point objects.
             // Also, notice that the blue dot at the origin is not draggable, why?  Try moving them around.
@@ -74,15 +92,29 @@
             // Line documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Line.html
             // Segment documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Segment.html
 
-            var L1 = board.create('line', [p1, p3], { strokeWidth: 3, color: 'gray' });
-            var L2 = board.create('line', [p2, p3], { strokeWidth: 3, color: 'gray' });
-            board.create('segment', [p1, p2], { strokeWidth: 2, color: 'lightgray', dash: 2 });
+            var L1 = board.create('segment', [p1, p3], { strokeWidth: 3, color: 'gray', withLabel: true});
+            var L2 = board.create('segment', [p2, p3], { strokeWidth: 3, color: 'gray', withLabel: true });
+            var s1 = board.create('segment', [p1, p2], { strokeWidth: 2, color: 'lightgray', dash: 2, withLabel: true });
+            s1.setLabelText("c=" + s1.L().toFixed(2));
+            s1.labelColor('gray');
+            L1.setLabelText("b=" + L1.L().toFixed(2));
+            L1.labelColor('gray');
+            L2.setLabelText("a=" + L2.L().toFixed(2));
+            L2.labelColor('gray');
+        
+           
 
             //Step 4: Look what other cool things we can do... a sector?  Sounds cool
             //Sector: http://jsxgraph.uni-bayreuth.de/docs/symbols/Sector.html
 
-            board.create('sector', [L2, L1, -1, -1, 1.5], { fillColor: 'pink', strokeColor: 'pink' });
-
+            board.create('sector', [L2, L1, -1, -1, 1.0], { fillColor: 'blue', strokeColor: 'pink' });
+            board.create('sector', [L1, s1, 1, 1, 1.0], { fillColor: 'red', strokeColor: 'pink' });
+            board.create('sector', [s1, L2, -1, 1, 1.0], { fillColor: 'green', strokeColor: 'pink' });
+            console.log("hi" +s1.L());
+            $('#linec').html("c=" + s1.L().toFixed(4));
+            $('#linea').html("a=" + L2.L().toFixed(4));
+            $('#lineb').html("b=" + L1.L().toFixed(4));
+            
             // How the heck did I get those numbers to work?  Random goofing around and the documentation!
             // But I finally got it and it looks nice! I bet jsxGraph can give that angle to us... just got to figure out how.
 
