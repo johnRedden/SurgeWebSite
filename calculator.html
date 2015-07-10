@@ -1,4 +1,4 @@
-
+﻿
 
 <!DOCTYPE html>
 
@@ -69,7 +69,7 @@
 
             <div class="calculator">
                 <div class="screen">
-                    <div class="line1">SURGE 2-line Calculator</div>
+                    <div class="line1"></div>
                     <div class="line2 pull-right">= results</div>
                 </div>
                 <div class="keypad">
@@ -126,7 +126,33 @@
         </div>
 
         <script>
+            $('.btn').on('click', calculate);
+            function calculate() {
+                var inputstr = "";
+                inputstr = $(this).html();
+                if (inputstr === '×') {
+                    inputstr = "*";
+                }
+                if (inputstr === '÷') {
+                    inputstr = "/";
+                }
+                if(inputstr === '−'){
+                    inputstr = "-";
+                }
+               
+                
+                if (inputstr === '=') {
+                   
+                    $('.line2').html("="+eval( $('.line1').html()));
+                }
+             
+                $('.line1').html($('.line1').html() + inputstr);
 
+            
+                
+            }
+
+         
         </script>
 		
 	</body>
