@@ -13,6 +13,7 @@
 		<!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/mathjs.js"></script>
 		<style>
 			body
 			{
@@ -36,7 +37,7 @@
                 font-size:small;
                 background-color:oldlace;
                 width:100%;
-                height:60px;
+                height:50px;
                 padding:4px;
              
             }
@@ -47,8 +48,6 @@
                 border-radius:5px;
                 padding:4px;
                 height:100%;
-                        
-               
             }
             .keypad{
                 width:65%;
@@ -70,54 +69,54 @@
             <div class="calculator">
                 <div class="screen">
                     <div class="line1"></div>
-                    <div class="line2 pull-right">= results</div>
+                    <div class="line2 pull-right"></div>
                 </div>
                 <div class="keypad">
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">log</div>
-                        <div class="btn btn-default">ln</div>
-                        <div class="btn btn-default">e</div>
+                        <div class="btn btn-default" name="bs">&larr;</div>
+                        <div class="btn btn-default" name="(">(</div>
+                        <div class="btn btn-default" name=")">)</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">7</div>
-                        <div class="btn btn-default">8</div>
-                        <div class="btn btn-default">9</div>
+                        <div class="btn btn-default" name="7">7</div>
+                        <div class="btn btn-default" name="8">8</div>
+                        <div class="btn btn-default" name="9">9</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">4</div>
-                        <div class="btn btn-default">5</div>
-                        <div class="btn btn-default">6</div>
+                        <div class="btn btn-default" name="4">4</div>
+                        <div class="btn btn-default" name="5">5</div>
+                        <div class="btn btn-default" name="6">6</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">1</div>
-                        <div class="btn btn-default">2</div>
-                        <div class="btn btn-default">3</div>
+                        <div class="btn btn-default" name="1">1</div>
+                        <div class="btn btn-default" name="2">2</div>
+                        <div class="btn btn-default" name="3">3</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">0</div>
-                        <div class="btn btn-default">.</div>
-                        <div class="btn btn-default">-</div>
+                        <div class="btn btn-default" name="0">0</div>
+                        <div class="btn btn-default" name=".">.</div>
+                        <div class="btn btn-default" name="-">-</div>
                     </div>
                 </div>
                 <div class="operations">
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">^</div>
-                        <div class="btn btn-default">Clr</div>
+                        <div class="btn btn-default" name="ans">Ans</div>
+                        <div class="btn btn-default" name="clr">Clr</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">(</div>
-                        <div class="btn btn-default">)</div>
+                        <div class="btn btn-default" name="^">^</div>
+                        <div class="btn btn-default" name="sqrt(">&radic;</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">&times;</div>
-                        <div class="btn btn-default">&divide;</div>
+                        <div class="btn btn-default" name="*">&times;</div>
+                        <div class="btn btn-default" name="/">&divide;</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">+</div>
-                        <div class="btn btn-default">&minus;</div>
+                        <div class="btn btn-default" name="+">+</div>
+                        <div class="btn btn-default" name="-">&minus;</div>
                     </div>
                     <div class="btn-group-justified">
-                        <div class="btn btn-default">=</div>
+                        <div class="btn btn-default" name="=">=</div>
                     </div>
  
                 </div>
@@ -126,30 +125,55 @@
         </div>
 
         <script>
-            $('.btn').on('click', calculate);
-            function calculate() {
-                var inputstr = "";
-                inputstr = $(this).html();
-                if (inputstr === '×') {
-                    inputstr = "*";
-                }
-                if (inputstr === '÷') {
-                    inputstr = "/";
-                }
-                if(inputstr === '−'){
-                    inputstr = "-";
-                }
-               
-                
-                if (inputstr === '=') {
-                   
-                    $('.line2').html("="+eval( $('.line1').html()));
+            var initialStr = "Simple Calculator";
+            var isNewCalculation = true;
+            $('.line1').html(initialStr);
+            $('.btn').on('click', buildLine1String);
+
+            function buildLine1String() {
+                 
+                var btnPressed = $(this).attr('name');
+                var line1Str = $('.line1').html();
+
+                if (isNewCalculation)
+                    line1Str = "";
+
+                if (btnPressed === '=') {
+                    //$('.line2').html("="+eval(line1Str));
+                    calculate();
+                    isNewCalculation = true;
+                } else if (btnPressed === 'clr') {
+                    $('.line1').html(initialStr);
+                    $('.line2').html(""); // Blank out Line 2
+                    isNewCalculation = true;
+                } else if (btnPressed === 'ans') {
+                    var line2number = $('.line2').html().substring(1);  //string without the =
+                    $('.line1').html(line2number);
+                    $('.line2').html(""); // Blank out Line 2
+                    isNewCalculation = false;
+                } else if (btnPressed === 'bs') {
+                    var line1Str = $('.line1').html();
+                    var n = line1Str.length;
+                    console.log(n);
+                    line1Str = line1Str.substring(0, n - 1);
+                    $('.line1').html(line1Str);
+                    $('.line2').html(""); // Blank out Line 2
+                    isNewCalculation = false;
+
+                } else {
+                    $('.line1').html(""); // Blank out Line 1
+                    $('.line2').html(""); // Blank out Line 2
+                    $('.line1').html(line1Str + btnPressed);
+                    isNewCalculation = false;
                 }
              
-                $('.line1').html($('.line1').html() + inputstr);
-
-            
-                
+            }
+            function calculate() {
+                var asciiMath = $('.line1').html();
+                //using the asciiMath to javascriptMath library mathjs.js
+                var jsMath = mathjs(asciiMath);
+                var result = eval(jsMath); //eval is a javascript function
+                $('.line2').html("= " + result);
             }
 
          
