@@ -76,7 +76,19 @@
                          grid: { strokeWidth: 0.75 },
                          showCopyright: false,
                          showNavigation: false,
-                         keepaspectratio: false //square graph coming in
+                         keepaspectratio: false, //square graph coming in
+                         zoom: {
+                            factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                            factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                            wheel: false,   // allow zooming by mouse wheel
+                            needshift: false, // mouse wheel zooming needs pressing of the shift key
+                             eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                         },
+                         pan: {
+                            enabled: true,   // Allow panning
+                            needTwoFingers: true, // panningis done with two fingers on touch devices
+                            needshift: false, // mouse panning needs pressing of the shift key
+                         }
                      });
           
             var boardC = JXG.JSXGraph.initBoard('myBoxC',
@@ -86,7 +98,19 @@
                           grid: { strokeWidth: 0.75 },
                           showCopyright: false,
                           showNavigation: false,
-                          keepaspectratio: false //square graph coming in
+                          keepaspectratio: false, //square graph coming in
+                          zoom: {
+                              factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                              factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                              wheel: false,   // allow zooming by mouse wheel
+                              needshift: false, // mouse wheel zooming needs pressing of the shift key
+                              eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                          },
+                          pan: {
+                              enabled: true,   // Allow panning
+                              needTwoFingers: true, // panningis done with two fingers on touch devices
+                              needshift: false, // mouse panning needs pressing of the shift key
+                          }
                       });
             var boardT = JXG.JSXGraph.initBoard('myBoxT',
                   {
@@ -95,20 +119,32 @@
                       grid: { strokeWidth: 0.75 },
                       showCopyright: false,
                       showNavigation: false,
-                      keepaspectratio: false //square graph coming in
+                      keepaspectratio: false, //square graph coming in
+                      zoom: {
+                          factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                          factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                          wheel: false,   // allow zooming by mouse wheel
+                          needshift: false, // mouse wheel zooming needs pressing of the shift key
+                          eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                      },
+                      pan: {
+                          enabled: true,   // Allow panning
+                          needTwoFingers: true, // panningis done with two fingers on touch devices
+                          needshift: false, // mouse panning needs pressing of the shift key
+                      }
                   });
             // Create a function graph for f(x) = sin(x)
             var Sine = board.create('functiongraph',
-                                 [function(x){ return Math.sin(x);}, -6.283,6.283]
+                                 [function(x){ return Math.sin(x);}]
             );
 
             // Create a function graph for f(x) = cos(x)
             var Sine = boardC.create('functiongraph',
-                                 [function (x) { return Math.cos(x); }, -6.283, 6.283]
+                                 [function (x) { return Math.cos(x); }]
             );
             // Create a function graph for f(x) = tan(x) 
             var Tan = boardT.create('functiongraph',
-                                 [function (x) { return Math.tan(x); }, -6.283, 6.283]
+                                 [function (x) { return Math.tan(x); }]
             );
            
 
