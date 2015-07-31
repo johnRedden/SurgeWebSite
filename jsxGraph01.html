@@ -33,7 +33,7 @@
         <h1>Hello jsxGraph.js</h1>
 
         <!--create a div to contain the graph -->
-        <div id="myBox" class="jxgbox clearfix" style='width:300px; height:200px; border: 1px solid lightgray'></div>
+        <div id="myBox" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
 
         <br />
         <div class="well">
@@ -43,6 +43,7 @@
         <div id="linea"></div>
         <div id="lineb"></div>
         <div id="linec"></div>
+        <input type= "text" id="Boxa" />
         </div>
     </div>
 
@@ -60,13 +61,13 @@
                          grid: { strokeWidth: 0.75 },
                          showCopyright: false,
                          showNavigation: false,
-                         keepaspectratio: true //square graph coming in
+                         keepaspectratio: false //square graph coming in
                      });
 
             // Step 2: add some graphs.  I suppose we start with points.
             // Here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Point.html
 
-            var p1 = board.create('point', [4, 2], { color: 'red' }).on('drag',function(){
+            var p1 = board.create('point', [3, 2], { color: 'red' }).on('drag',function(){
                 $('#lineb').html("b=" + L1.L().toFixed(4));
                 $('#linec').html("c=" + s1.L().toFixed(4));
                 s1.setLabelText("c=" + s1.L().toFixed(4));
@@ -107,14 +108,34 @@
             //Step 4: Look what other cool things we can do... a sector?  Sounds cool
             //Sector: http://jsxgraph.uni-bayreuth.de/docs/symbols/Sector.html
 
-            board.create('sector', [L2, L1, -1, -1, 1.0], { fillColor: 'blue', strokeColor: 'pink' });
-            board.create('sector', [L1, s1, 1, 1, 1.0], { fillColor: 'red', strokeColor: 'pink' });
-            board.create('sector', [s1, L2, -1, 1, 1.0], { fillColor: 'green', strokeColor: 'pink' });
+            board.create('sector', [L2, L1, -1, -1, 1.0], { fillColor: 'blue', strokeColor: 'pink', withlabel:true, name: C });
+            board.create('sector', [L1, s1, 1, 1, 1.0], { fillColor: 'red', strokeColor: 'pink', withlabel: true , name: A });
+            board.create('sector', [s1, L2, -1, 1, 1.0], { fillColor: 'green', strokeColor: 'pink', withlabel: true, name: B });
             console.log("hi" +s1.L());
             $('#linec').html("c=" + s1.L().toFixed(4));
             $('#linea').html("a=" + L2.L().toFixed(4));
             $('#lineb').html("b=" + L1.L().toFixed(4));
+            function pyth(a, b, c)
+            {
+                return (b * b + c * c - a * a) / (2 * b * c);
+            }
+
+            function A() {
+                return ((Math.acos(pyth(L2.L(), L1.L(), s1.L()))) * (180 / 3.14159)) .toFixed(2);
+            }
+            function B() {
+                return ((Math.acos(pyth(L1.L(), L2.L(), s1.L()))) * (180 / 3.14159)) .toFixed(2);
+            }
+            function C() {
+                return ((Math.acos(pyth(s1.L(), L2.L(), L1.L()))) * (180 / 3.14159)).toFixed(2);
+            }
+            $('#Boxa').keyup(function (e) {
+                L2.L($(e.target).val());    
+            });
             
+               
+
+
             // How the heck did I get those numbers to work?  Random goofing around and the documentation!
             // But I finally got it and it looks nice! I bet jsxGraph can give that angle to us... just got to figure out how.
 
