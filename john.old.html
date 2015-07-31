@@ -1,114 +1,97 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><!--just delete user-scalable=no if you want to be able to zoom on the website-->
-<link rel="icon" 
-      type="image/ico" 
-      href="images/bolt.ico">
-<title >Surge | Redden</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<style type="text/css">
-    .bs-example{
-        margin: 20px;
-    }
-    body { padding-top: 50px;
-    background-color: WhiteSmoke; }
 
-    .bs-callout-left {
-          padding: 20px;
-          margin: 20px 0;
-          border: 1px solid #eee;
-          border-left-width: 5px;
-          border-radius: 3px;
-          border-left-color: LightSalmon;
-          width: 90%;
-          margin-left: auto;
-          margin-right: auto;
-          background-color: LightGray;
-          display: none;
+<html>
+	
+	<head>
+		<title>John's Page</title>
+		<!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<style>
+			body
+			{
+				background-color: oldlace;
+                font-size: large;
+			}
+            #myMainContainter{
+                background-color: white;
+                padding: 10px;
+                border-width: thin;
+                border-color: lightgray;
+                border-radius: 6px;
+                width:100%;
+            }
+			
+		</style>
+	</head>
+	
+	<body>
+		
+		<div class="container">
+            <h1>John's Page</h1>
+           
+            <div id="myMainContainter">        
+                <a href="https://github.com/johnRedden" target="_blank">My GitHub Page</a> Follow me! 
+                Email: jtredden@gmail.com<br />
+                <strong>Play with Bootstrap!</strong>  It's totally fun:
+                <a href="http://www.w3schools.com/bootstrap/bootstrap_typography.asp" target="_blank">Learn Bootstrap</a> 
 
-        }
-        .bs-callout-right {
-          padding: 20px;
-          margin: 20px 0;
-          border: 1px solid #eee;
-          border-right-width: 5px;
-          border-radius: 3px;
-          border-right-color: oldlace;
-        }
-        .navbar { box-shadow: 0px 5px 3px -3px #888}
-        
-</style>
-</head>
-<body>
-    <!--navbar start-->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html"><kbd>Surge Site</kbd></a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="algebra.html">Algebra</a></li>
-        <li><a href="trigonometry.html">Trigonometry</a></li>
-        <li><a href="converters.html">Converters</a></li>
-        </ul>       
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="paul.html">Paul</a></li>
-            <li><a href="isabel.html">Isabel</a></li>
-            <li><a href="Dhruv's page.html">Dhruv</a></li>
-            <li><a href="cory.html">Cory</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="john.html">John Redden</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav><!--navbar end-->
-    <br>
-   <div id="monster" class="bs-callout-left">
-            <div class="row">
-                <div class="col-sm-3">
-                    <img src="images/john.jpeg" alt="John Redden" title="John Redden" class="img-circle">
-                      </div>
-                <div class="col-sm-9">
-                    <p><span class = "glyphicon glyphicon-sunglasses"></span>
-                        <strong>John Redden</strong> - Professor of Mathematics, author, father of four, and education technology enthusiast. 
-                        <br />
-                        ( jt.redden@gmail.com  OR  johnr@cos.edu ) Circle me on G+: <a href="https://plus.google.com/+JohnRedden" target="_blank">+JohnRedden</a>
-                        <br /><br />
-                        
-                        Current Math Related Websites:
-                        <ul>
-                            <li>[ <a href="http://www.openalgebra.com/" target="_blank">www.openAlgebra.com</a>  ]- A free online Algebra study guide.</li>
-                            <li>[ <a href="http://www.trigcheatsheet.com/" target="_blank">www.trigCheatSheet.com</a>  ]- A free online Trigonometry study guide.</li>
-                        </ul>                        
+                <hr />
 
-                    </p>
+                <!-- Code for day 1 math app starts here, javascript/JQuery below-->
+                <h2>Our Day 1 Math App</h2>
+                <div class="panel panel-default center-block" style="width:50%;text-align:center">
+                    <div class="panel-heading"><strong>Number Squarer</strong></div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="userInput">Enter a Number</label>
+                                <input class="form-control center-block input-lg" id="userInput" type="text" style="width:25%" placeholder="#">
+                            </div>
+                        </form>
+                        <span id="output"><em>Results will appear here.</em></span>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <!-- End App 1 HTML-->
+                <div class="text-info">
+                    <span class="glyphicon glyphicon-alert"></span>
+                    Have a look at the source. I challenge you to make a simple app on your web page or improve this one.
+                </div>
+                <hr />
+                <!--Bootstrap way to make a back button
+                    Basically, an anchor tag with a btn class attached to it! -->
+                Bootstrap way to make a back button: <a href="index.html" class="btn btn-default">Home</a>
+                
+                <hr />
+                Maybe we can make this 2-line calculator work?
+                <a href="calculator.html" >Calculator Project</a>
 
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-    $('#monster').hide().fadeIn('slow'); 
-});
+        <script>
 
-</script>
-</body>
-</html>                                     
+            // Add keyup listener to the input box
+            $('#userInput').on('keyup', squareResults);
+
+            function squareResults() {
+                // get the value string from the input text box and convert it to a float (real number)
+                var n = parseFloat($('#userInput').val());
+
+                // do the math and build the output string
+                var outputDisplayStr;
+                if(isNaN(n)){
+                    outputDisplayStr = "Enter a number!"
+                }else{
+                    outputDisplayStr = n + "^2 = " + Math.pow(n, 2);
+                }
+                
+                // set the html of the output span to the result.
+                $('#output').html(outputDisplayStr);
+
+                // This is very basic, there are many ways to do this! Paul can do it in one line I bet.
+            };
+        </script>
+		
+	</body>
+	
+</html>
