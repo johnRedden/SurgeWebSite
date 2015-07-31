@@ -1,0 +1,84 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Squaring App</title>
+    <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <style>
+        body {
+            background-color: white;
+            font-size: large;
+        }
+
+        #myMainContainter {
+            background-color: white;
+            padding: 10px;
+            border-width: thin;
+            border-color: lightgray;
+            border-radius: 6px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Squaring App</h1>
+        
+        <div id="myMainContainter">
+
+            <!-- Code for day 1 math app starts here, javascript/JQuery below-->
+            <div class="panel panel-default center-block" style="width:50%;text-align:center">
+                <div class="panel-heading"><strong>Number Squarer</strong></div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="userInput">Enter a Number</label>
+                            <input class="form-control center-block input-lg" id="userInput" type="text" style="width:25%" placeholder="#">
+                        </div>
+                    </form>
+                    <span id="output"><em>Results will appear here.</em></span>
+                </div>
+            </div>
+            <!-- End App 1 HTML-->
+           
+            <!--Bootstrap way to make a back button
+                Basically, an anchor tag with a btn class attached to it! -->
+            <a href="index.html" class="btn btn-default"><span class="glyphicon glyphicon-backward"></span> Main Page </a>
+
+      </div>
+        </div>
+
+            <script>
+
+                // Add keyup listener to the input box
+                $('#userInput').on('keyup', squareResults);
+
+                function squareResults() {
+                    // get the value string from the input text box and convert it to a float (real number)
+                    var n = parseFloat($('#userInput').val());
+
+                    // do the math and build the output string
+                    var outputDisplayStr;
+                    if (isNaN(n)) {
+                        outputDisplayStr = "Enter a number!"
+                    } else {
+                        outputDisplayStr = n + "^2 = " + Math.pow(n, 2);
+                    }
+
+                    // set the html of the output span to the result.
+                    $('#output').html(outputDisplayStr);
+
+                    // This is very basic, there are many ways to do this! Paul can do it in one line I bet.
+                };
+            </script>
+
+</body>
+
+</html>
