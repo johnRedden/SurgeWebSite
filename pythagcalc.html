@@ -7,14 +7,6 @@
 		<title>Pythagorean Calculator</title>
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<style>
-			#pythcalc
-			{
-				width:	50%;
-				margin-top:	16px;
-				margin-right:	25%;
-				margin-left:	25%;
-				background-color:	whitesmoke;
-			}
 			
 			.pctb
 			{
@@ -30,22 +22,16 @@
 				margin:	0px;
 				padding:	0px;
 			}
-			
-			#btnAll
-			{
-				width:	312px;
-				margin-top:	4px;
-				margin-right:	4px;
-				padding:	0px;
-			}
 		</style>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script type="text/javascript">
 			$(document).ready(function(args)
 			{
 				$("#formx").on("change", "#a", onAChanged
 				).on("change", "#b", onBChanged
 				).on("change", "#c", onCChanged);
+				updateMathJax();
 			});
 			
 			function onAChanged(args, outside)
@@ -132,15 +118,6 @@
 						onUpdateB({}, true);
 					if(nanc)
 						onUpdateC({}, true);
-					
-					$("#output").html
-					(
-						parseFloat(a.val()).toFixed(2)+"^2"+
-						" + "+
-						parseFloat(b.val()).toFixed(2)+"^2"+
-						" = "+
-						parseFloat(c.val()).toFixed(2)+"^2"
-					);
 				}
 				else
 				{
@@ -162,33 +139,45 @@
 						onUpdateB({}, true);
 						onUpdateC({}, true);
 					}
-					
-					$("#output").html
-					(
-						parseFloat(a.val()).toFixed(2)+"^2"+
-						" + "+
-						parseFloat(b.val()).toFixed(2)+"^2"+
-						" = "+
-						parseFloat(c.val()).toFixed(2)+"^2"
-					);
 				}
+				
+				$(".output").html
+				(
+					"\\["+
+					parseFloat(a.val()).toFixed(2)+"^{2}"+
+					" + "+
+					parseFloat(b.val()).toFixed(2)+"^{2}"+
+					" = "+
+					parseFloat(c.val()).toFixed(2)+"^{2}"+
+					"\\]"
+				);
+				updateMathJax();
+			}
+			
+			function updateMathJax()
+			{
+				MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output"]);
 			}
 		</script>
 	</head>
 	
 	<body>
-		<div id="pythcalc">
-			<center>
-				Pythagorean Calculator<br />
-				<form id="formx">
-					<input id="a" class="pctb" type="text" placeholder="a" />
-					<input id="b" class="pctb" type="text" placeholder="b" />
-					<input id="c" class="pctb" type="text" placeholder="c" />
-				</form>
-				<br />
-				<br />
-				Results: <span id="output">a^2 + b^2 = c^2</span>
-			</center>
+		<div class="container">
+			<div class="panel panel-default center-block" style="width:50%; text-align: center;margin-top:16px">
+				<div class="panel-heading">
+					Pythagorean Calculator
+				</div>
+				<div class="panel-body">
+					<form id="formx">
+						<input id="a" class="pctb" type="text" placeholder="a" />
+						<input id="b" class="pctb" type="text" placeholder="b" />
+						<input id="c" class="pctb" type="text" placeholder="c" />
+					</form>
+				</div>
+				<div class="panel-footer">
+					Results: <span class="output">\[ a^{2} + b^{2} = c^{2} \]</span>
+				</div>
+			</div>
 		</div>
 	</body>
 
