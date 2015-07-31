@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<style>
+			#pythcalc
+			{
+				width:	50%;
+				margin-top:	16px;
+				margin-right:	25%;
+				margin-left:	25%;
+				background-color:	lightgray;
+			}
+			
+			.pctb
+			{
+				width:	96px;
+				margin-top:	4px;
+				margin-right:	4px;
+				margin-left:	4px;
+				padding:	0px;
+			}
+			
+			#formx
+			{
+				margin:	0px;
+				padding:	0px;
+			}
+			
+			#btnAll
+			{
+				width:	312px;
+				margin-top:	4px;
+				margin-right:	4px;
+				padding:	0px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(args)
+			{
+				$("#formx").on("change", "#a", onAChanged
+				).on("change", "#b", onBChanged
+				).on("change", "#c", onCChanged);
+			});
+			
+			function onAChanged(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				findMissingSide(a, b, c, 0, outside);
+			}
+			
+			function onUpdateA(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				a.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2));
+				if(!outside)
+					onAChanged(args, outside);
+			}
+			
+			function onBChanged(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				findMissingSide(a, b, c, 1, outside);
+			}
+			
+			function onUpdateB(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				b.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2));
+				if(!outside)
+					onBChanged(args, outside);
+			}
+			
+			function onCChanged(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				findMissingSide(a, b, c, 2, outside);
+			}
+			
+			function onUpdateC(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				c.val((Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2));
+				if(!outside)
+					onCChanged(args, outside);
+			}
+			
+			function findMissingSide(a, b, c, id, outside)
+			{
+				// Variables
+				var	tempA, tempB, tempC;
+				
+				if(isNaN(parseFloat(a.val())))// || id=== 0)
+				{
+					$("#output").html
+					(
+						(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2)+
+						" + "+parseFloat(b.val()).toFixed(2)+
+						" = "+parseFloat(c.val()).toFixed(2)
+					);
+					
+					a.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2));
+					onUpdateA({}, true);
+				}
+				else if(isNaN(parseFloat(b.val())))// || id=== 1)
+				{
+					$("#output").html
+					(
+						parseFloat(a.val()).toFixed(2)+" + "+
+						(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2)+
+						" = "+parseFloat(c.val()).toFixed(2)
+					);
+					
+					b.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2));
+					onUpdateB({}, true);
+				}
+				else if(isNaN(parseFloat(c.val())))// || id=== 2)
+				{
+					$("#output").html
+					(
+						parseFloat(a.val()).toFixed(2)+" + "+
+						parseFloat(b.val()).toFixed(2)+" = "+
+						(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2)
+					)
+					
+					c.val((Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2));
+					onUpdateC({}, true);
+				}
+				else if(parseFloat(a.val())> parseFloat(c.val()))
+				{
+					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					c.val(tempC);
+					onUpdateC({}, true);
+					
+					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					a.val(tempA);
+					onUpdateA({}, true);
+					
+					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
+					b.val(tempB);
+					onUpdateB({}, true);
+					
+					$("#output").html
+					(
+						tempA+" + "+tempB+" = "+tempC
+					);
+				}
+				else if(parseFloat(b.val())> parseFloat(c.val()))
+				{
+					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					c.val(tempC);
+					onUpdateC({}, true);
+					
+					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					a.val(tempA);
+					onUpdateA({}, true);
+					
+					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
+					b.val(tempB);
+					onUpdateB({}, true);
+					
+					$("#output").html
+					(
+						tempA+" + "+tempB+" = "+tempC
+					);
+				}
+				else if(id=== 0)
+				{
+					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
+					b.val(tempB);
+					onUpdateB({}, true);
+					
+					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					a.val(tempA);
+					onUpdateA({}, true);
+					
+					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					c.val(tempC);
+					onUpdateC({}, true);
+					
+					$("#output").html
+					(
+						tempA+" + "+tempB+" = "+tempC
+					);
+				}
+				else
+				{
+					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					a.val(tempA);
+					onUpdateA({}, true);
+					
+					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
+					b.val(tempB);
+					onUpdateB({}, true);
+					
+					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
+					c.val(tempC);
+					onUpdateC({}, true);
+					
+					$("#output").html
+					(
+						tempA+" + "+tempB+" = "+tempC
+					);
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="pythcalc">
+			<center>
+				Pythagorean Calculator<br />
+				<form id="formx">
+					<input id="a" class="pctb" type="text" placeholder="a" />
+					<input id="b" class="pctb" type="text" placeholder="b" />
+					<input id="c" class="pctb" type="text" placeholder="c" />
+				</form>
+				<br />
+				<br />
+				Results: <span id="output">a^2 + b^2 = c^2</span>
+			</center>
+		</div>
+	</body>
+
+</html>
