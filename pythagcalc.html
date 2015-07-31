@@ -4,6 +4,7 @@
 <html>
 
 	<head>
+		<title>Pythagorean Calculator</title>
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<style>
 			#pythcalc
@@ -12,7 +13,7 @@
 				margin-top:	16px;
 				margin-right:	25%;
 				margin-left:	25%;
-				background-color:	lightgray;
+				background-color:	whitesmoke;
 			}
 			
 			.pctb
@@ -117,117 +118,58 @@
 			{
 				// Variables
 				var	tempA, tempB, tempC;
+				var	nana=	isNaN(parseFloat(a.val()));
+				var	nanb=	isNaN(parseFloat(b.val()));
+				var	nanc=	isNaN(parseFloat(c.val()));
+				var	aoverc=	parseFloat(a.val())> parseFloat(c.val());
+				var	boverc=	parseFloat(b.val())> parseFloat(c.val());
 				
-				if(isNaN(parseFloat(a.val())))// || id=== 0)
+				if(nana || nanb || nanc)
 				{
-					$("#output").html
-					(
-						(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2)+
-						" + "+parseFloat(b.val()).toFixed(2)+
-						" = "+parseFloat(c.val()).toFixed(2)
-					);
-					
-					a.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2));
-					onUpdateA({}, true);
-				}
-				else if(isNaN(parseFloat(b.val())))// || id=== 1)
-				{
-					$("#output").html
-					(
-						parseFloat(a.val()).toFixed(2)+" + "+
-						(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2)+
-						" = "+parseFloat(c.val()).toFixed(2)
-					);
-					
-					b.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2));
-					onUpdateB({}, true);
-				}
-				else if(isNaN(parseFloat(c.val())))// || id=== 2)
-				{
-					$("#output").html
-					(
-						parseFloat(a.val()).toFixed(2)+" + "+
-						parseFloat(b.val()).toFixed(2)+" = "+
-						(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2)
-					)
-					
-					c.val((Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2));
-					onUpdateC({}, true);
-				}
-				else if(parseFloat(a.val())> parseFloat(c.val()))
-				{
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
+					if(nana)
+						onUpdateA({}, true);
+					if(nanb)
+						onUpdateB({}, true);
+					if(nanc)
+						onUpdateC({}, true);
 					
 					$("#output").html
 					(
-						tempA+" + "+tempB+" = "+tempC
-					);
-				}
-				else if(parseFloat(b.val())> parseFloat(c.val()))
-				{
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					$("#output").html
-					(
-						tempA+" + "+tempB+" = "+tempC
-					);
-				}
-				else if(id=== 0)
-				{
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					$("#output").html
-					(
-						tempA+" + "+tempB+" = "+tempC
+						parseFloat(a.val()).toFixed(2)+"^2"+
+						" + "+
+						parseFloat(b.val()).toFixed(2)+"^2"+
+						" = "+
+						parseFloat(c.val()).toFixed(2)+"^2"
 					);
 				}
 				else
 				{
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
+					if(aoverc || boverc)
+					{
+						onUpdateC({}, true);
+						onUpdateA({}, true);
+						onUpdateB({}, true);
+					}
+					else if(id=== 0)
+					{
+						onUpdateB({},true);
+						onUpdateA({},true);
+						onUpdateC({},true);
+					}
+					else
+					{
+						onUpdateA({}, true);
+						onUpdateB({}, true);
+						onUpdateC({}, true);
+					}
 					
 					$("#output").html
 					(
-						tempA+" + "+tempB+" = "+tempC
+						parseFloat(a.val()).toFixed(2)+"^2"+
+						" + "+
+						parseFloat(b.val()).toFixed(2)+"^2"+
+						" = "+
+						parseFloat(c.val()).toFixed(2)+"^2"
 					);
 				}
 			}
