@@ -1,0 +1,213 @@
+<!-- Created by Paul Gonzalez Becerra /-->
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Equation Whatever</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<style>
+			#header
+			{
+				height:	48px;
+				line-height:	40px;
+				padding:	4px;
+				background-color:	#dddddd;
+			}
+			
+			#content
+			{
+				margin-top:	48px;
+			}
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript">
+			// Called when the page has been loaded
+			$(document).ready(function(args)
+			{
+				$("#input").on("keyup", onInputChanged);
+				readInput($("#input").val());
+			});
+			
+			// Called when the input textbox has been changed
+			function onInputChanged(args)
+			{
+				readInput($("#input").val());
+			}
+			
+			// Reads the input math equation
+			function readInput(inptext)
+			{
+				// Variables
+				var	eq=	readEquation(inptext);
+				
+				$("#header").text(eq);
+				//$("#header").text(eq.moveToOtherSide(eq.leftEq.allSpots[1], eq.rightEq.allSpots[0]));
+			}
+			
+			function readEquation(text)
+			{
+				// Variables
+				var	eq=	new Equation();
+				var	bLeft=	true;
+				
+				for(var i= 0; i< text.length; i++)
+				{
+					if(text[i]=== '=')
+					{
+						bLeft=	false;
+						
+						continue;
+					}
+					
+					if(bLeft)
+						eq.leftEq.textAdded+=	text[i];
+					else
+						eq.rightEq.textAdded+=	text[i];
+				}
+				eq.leftEq.update();
+				eq.rightEq.update();
+				
+				return eq;
+			}
+			
+			// public class Equation
+			function Equation() // Constructor >> public Equation()
+			{
+				// Variables
+				this.leftEq=	new SubEquation(); // public SubEquation	leftEq;
+				this.rightEq=	new SubEquation(); // public SubEquation	rightEq;
+				
+				this.toString=	function()
+				{
+					return "Left: "+this.leftEq.toString()+"; Right: "+this.rightEq.toString()+";";
+				};
+				
+				this.solve=	function()
+				{
+					
+				}
+				
+				this.moveToOtherSide=	function(leftEqSpot, rightEqSpot)
+				{
+					this.leftEq.removeSpot(leftEqSpot.index);
+					this.rightEq.removeSpot(rightEqSpot.index);
+					
+					this.leftEq.addSpot(rightEqSpot);
+					this.rightEq.addSpot(leftEqSpot);
+					
+					return this;
+				}
+				
+				return this;
+			}
+			
+			// public class SubEquation
+			function SubEquation() // Constructor >> public SubEquation()
+			{
+				// Variables
+				this.allSpots=	new Array();	// public EqSpot[]	allSpots;
+				this.textAdded=	"";
+				
+				this.toString=	function()
+				{
+					// Variables
+					var	str=	"";
+					
+					for(var i= 0; i< this.allSpots.length; i++)
+						str+=	this.allSpots[i].toString();
+					
+					return str;
+				};
+				
+				this.addSpot=	function(spot)
+				{
+					this.allSpots.push(spot);
+				};
+				
+				this.removeSpot=	function(index)
+				{
+					this.allSpots.splice(index, 1);
+				};
+				
+				this.update=	function()
+				{
+					// Variables
+					var	index=	0;
+					
+					this.textAdded=	this.textAdded.replace(/\s/g, "");
+					this.allSpots.push(new EqSpot(index));
+					for(var i= 0; i< this.textAdded.length; i++)
+					{
+						switch(this.textAdded[i])
+						{
+							case '+':
+							case '-':
+							case '/':
+							case '*':
+								this.allSpots.push(new EqSpot(++index));
+								this.allSpots[index].arithType=	this.textAdded[i];
+								break;
+							default:
+								this.allSpots[index].text+=	this.textAdded[i]
+								break;	// Add to eq spot
+						}
+					}
+					this.destroyEmptySpots();
+				};
+				
+				this.destroyEmptySpots=	function()
+				{
+					for(var i= this.allSpots.length-1; i>= 0; i--)
+					{
+						if(this.allSpots[i].isEmpty())
+						{
+							this.removeSpot(i);
+						}
+					}
+				}
+				
+				return this;
+			}
+			
+			// public class EqSpot
+			function EqSpot(pmIndex) // Constructor >> public EqSpot(int pmIndex)
+			{
+				// Variables
+				this.arithType=	''; // public char	arithType;
+				this.index=	pmIndex;
+				this.text=	"";
+				
+				this.toString=	function()
+				{
+					return "Spot { "+this.arithType+this.text+" } ";
+				};
+				
+				this.isEmpty=	function()
+				{
+					return (this.arithType== '' && this.text== "");
+				};
+				
+				return this;
+			}
+		</script>
+	</head>
+	
+	<body>
+		
+		<div class="container">
+			
+			<div id="header">Something or another</div>
+			
+			<div id="content">
+				<input id="input" type="text" placeholder="x-1=4" />
+				<div id="output"></div>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>
+
+<!-- End of File /-->
