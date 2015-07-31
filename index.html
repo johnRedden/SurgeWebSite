@@ -1,92 +1,184 @@
-
-
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><!--just delete user-scalable=no if you want to be able to zoom on the website-->
+<link rel="icon" 
+      type="image/ico" 
+      href="images/bolt.ico">
+<title >Surge | Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+     .bs-example{
+        margin: 20px;
+    }
+    body { padding-top: 50px;
+    background-color: WhiteSmoke;
+    
+     }
 
-<html>
-	
-	<head>
-		<title>COS SURGE Website</title>
-		<!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
-		<link rel="stylesheet" href="css/bootstrap.css" />
-		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-		<style>
-			body
-			{
-				background-color:	#efefef;
-			}
-			
-			ul.nav li
-			{
-				width:	20%;
-				float:	left;
-				text-align:	center;
-				background-color:	#f0f0f0;
-			}
-		</style>
-	</head>
-	
-	<body>
-		
-		<div class="container">
-			<h1>SURGE Website</h1>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<ul class="nav">
-						<li><a href="index.html">Home Page</a></li> <!-- To each individual: You can rename your stuff below, put whatever you like, just nothing inappropriate /-->
-						<li><a href="cory.html">Cory's Page</a></li>
-						<li><a href="isabel.html">Isabel's Page</a></li>
-						<li><a href="dhruv.html">Dhruv's Page</a></li>
-                        <li><a href="john.html">John's Page</a></li>
-					</ul>
-				</div>
-				<!-- Tags and description should be self-explanitory /-->
-				<div class="panel-body">
-					<p>
-						<b><i>Goals for you to do:</i></b>
-						&emsp;&emsp;Below will be a couple of goals to mess around with to get the feel of GitHub. Mess with JavaScript if you'd like, look up tutorials
-						and stuff about it. And just remember <b><a href="http://www.w3schools.com/">w3schools</a> is your best friend!</b> If your lost, just look up
-						online what to do about it.
-						<br/>
-						<br/>
-						<b>NOTE:</b>&emsp;Don't fret if you mess up the website, there are ways to fix things, and it is all a learning process, plus once everything
-						is up and ready, all this content below will be gone. But for now it is a sort of training ground. I also deliberately
-						tried to make it possible for people to screw up while working on it together.
-					</p>
-					<div id="append-me">
-						<center>
-							<h1>Append To Me!</h1>
-							<h4>Add content to the paragraph tag below</h4>
-						</center>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis tincidunt tortor sit amet porttitor. Donec fermentum ac lacus vel ultrices. Vestibulum imperdiet in lacus et bibendum. Aenean mi ipsum. This is a sentence WOOT! WOOT!</p>
-					</div>
-					<div id="delete-me">
-						<center>
-							<h1>Delete From Me!</h1>
-							<h4>Delete content from the paragraph tag below, (Don't be stingy and make sure to have enough for everyone else!)</h4>
-						</center>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed scelerisque leo, sit amet dignissim orci. Nam posuere turpis mi. Etiam porttitor magna libero, vitae lacinia mi cursus vel. Quisque convallis commodo no abla espanol mauris sed auctor. Sed in libero velit. Curabitur sodales imperdiet diam, pretium lacinia arcu pharetra vel. Integer lacus ante, egestas id ipsum in, consectetur aliquet libero. Aliquam imperdiet, velit vel euismod feugiat, lacus mauris maximus ante, non ornare mi turpis at mauris. Maecenas bibendum erat eros, vel pharetra lacus lacinia eu. Nulla vehicula euismod tortor, at ullamcorper nulla bibendum vitae. Donec mattis.</p>
-					</div>
-					<div id="revert-me">
-						<center>
-							<h1>Revert Me!</h1>
-							<h4>Just delete everything from the paragraph tag below and put in whatever you want, then try and revert back to a previous one</h4>
-						</center>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis tincidunt tortor sit amet porttitor. Donec fermentum ac lacus vel ultrices. Vestibulum imperdiet in lacus et bibendum. Aenean mi ipsum.</p>
-					</div>
-					<div id="branch-off-man">
-						<center>
-							<h1>Create Your Own HTML File!</h1>
-							<h4>Basically, find a way to create a webpage, link it up to the "panel-heading"'s anchor tags (&lt;a&gt;), and upload!</h4>
-						</center>
-						<p>
-							Here's the important part, doesn't matter what it is, as long as it functions. The format doesn't even need to be the same, heck you guys can
-							mess with each other's webpages.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-	</body>
-	
-</html>
+    .bs-callout-left {
+          padding: 2px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 6px;
+          border-left-color: DodgerBlue;
+          width: 95%;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: AliceBlue;
+          display: none;
+
+        }
+        .bs-callout-right {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-right-width: 5px;
+          border-radius: 3px;
+          border-right-color: oldlace;
+        }
+
+        .navbar { box-shadow: 0px 5px 3px -3px #888}
+
+      .footer {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+.footer {
+  position: relative;
+ border: 1px;
+  } 
+  .jumbotron{
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 97%;
+
+  }
+
+    </style>
+</head> 
+<body>
+	<!--navbar start-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><kbd>Surge Site</kbd></a>      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="algebra.html">Algebra</a></li>
+        <li><a href="trigonometry.html">Trigonometry</a></li>
+        <li><a href="converters.html">Converters</a></li>
+        </ul>       
+	  <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="paul.html">Paul</a></li>
+            <li><a href="isabel.html">Isabel</a></li>
+            <li><a href="Dhruv's page.html">Dhruv</a></li>
+            <li><a href="cory.html">Cory</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="john.html">John Redden</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!--navbar end-->
+	<br>
+  <div class="jumbotron">
+            <h1 class = "text-center">S.U.R.G.E</h1>
+          <table border = "0" width = "100%">
+  
+    <tr><td  width=45%><td width = "55%"><code>S</code>cience</td></td></tr>
+    <tr><td><td><code>U</code>ndergraduate</td></tr>
+    <tr><td><td><code>R</code>esearch</td></tr>
+    <tr><td><td><code>G</code>roup</td></td></tr>
+    <tr><td><td><code>E</code>xperience</td></td></tr>
+ 
+</table>
+          </div>
+          <br>
+  
+	<div id="monster" class="jumbotron"><!--box thing start-->
+            <div class="row">
+                <div class="col-sm-3">
+                    
+                </div>
+                <div class="col-sm-9">
+                    <p>
+                        <h2>Surge Program Goals are:</h2>
+                        <div>
+                          <ul>
+                            <li id = "raptor">To increase the exposure of community college Science, Technology, Engineering, or Mathematic (STEM) majors to laboratory research equipment, methodologies and current research.</li>
+                            <br>
+                            <li id = "dog">To enhance access to higher math classes by increasing student placement scores through utilizing an intense one-week "Math Jam" model. In addition, student success and retention in higher level course will be increased by student preparation using Math, Chemistry and Physics Jams.</li>
+                            <br>
+                            <li id = "cat">To improve the rate of graduation and transfer among underserved populations in STEM fields by creating a pipeline to appropriate student support programs.</li>
+                          </ul>
+                        </div>
+                        <br />
+                      <br />
+                        
+                        
+                    </p>
+                </div>
+            </div>
+        </div><!--box thing end-->
+       <br>
+        <div class="row marketing">
+       <div class="col-lg-6">
+          <div class = "text-center"><h4><code>Duane Goodwin</code></h4>
+          <p>SURGE Activity Lead</p>
+          <p>duaneg@cos.edu</p>
+          <p>(559)737-6136</p>
+        </div>
+        </div>
+        <div class="col-lg-6">
+          <div class = "text-center">
+          <h4>Webpages</h4>
+         <p> <a href = "http://www.cos.edu/Pages/default.aspx" type="button" class="btn btn-primary">Main COS page</a></p>
+           <a href = "http://www.cos.edu/Academics/MathEngineering/MESA/Pages/default.aspx" type="button" class="btn btn-success"">Mesa</a>
+            <a href = "http://www.cos.edu/Academics/MathEngineering/SURGE/Pages/default.aspx" type="button" class="btn btn-danger">Surge</a>
+          </div>
+      </div>
+      </div>
+      </div>
+
+       <br>
+<hr>
+<footer class="footer">
+  
+      <p class="text-muted glyphicon glyphicon-copyright-mark">Copyright 2015</p>
+      
+    </footer>
+   
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#monster').hide().fadeIn('slow'); 
+    $('#raptor').hide().delay(0500).fadeIn('slow');
+    $('#dog').hide().delay(0800).fadeIn('slow');
+    $('#cat').hide().delay(1100).fadeIn('slow');
+});
+</script>
+
+<!--<img src="images/logo.jpg" alt="Logo" title="Logo 61% Opacity " class="img-square">-->
+</body>
+</html>                                		

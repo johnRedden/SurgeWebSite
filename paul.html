@@ -1,213 +1,112 @@
-<!-- Created by Paul Gonzalez Becerra /-->
-
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><!--just delete user-scalable=no if you want to be able to zoom on the website-->
+<link rel="icon" 
+      type="image/ico" 
+      href="images/bolt.ico">
+<title >Surge | Paul</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .bs-example{
+        margin: 20px;
+    }
+    body { padding-top: 50px;
+    background-color: WhiteSmoke; }
 
-<html>
-	<head>
-		<title>Equation Whatever</title>
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<style>
-			#header
-			{
-				height:	48px;
-				line-height:	40px;
-				padding:	4px;
-				background-color:	#dddddd;
-			}
-			
-			#content
-			{
-				margin-top:	48px;
-			}
-		</style>
-		
-		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-		<script type="text/javascript">
-			// Called when the page has been loaded
-			$(document).ready(function(args)
-			{
-				$("#input").on("keyup", onInputChanged);
-				readInput($("#input").val());
-			});
-			
-			// Called when the input textbox has been changed
-			function onInputChanged(args)
-			{
-				readInput($("#input").val());
-			}
-			
-			// Reads the input math equation
-			function readInput(inptext)
-			{
-				// Variables
-				var	eq=	readEquation(inptext);
-				
-				$("#header").text(eq);
-				//$("#header").text(eq.moveToOtherSide(eq.leftEq.allSpots[1], eq.rightEq.allSpots[0]));
-			}
-			
-			function readEquation(text)
-			{
-				// Variables
-				var	eq=	new Equation();
-				var	bLeft=	true;
-				
-				for(var i= 0; i< text.length; i++)
-				{
-					if(text[i]=== '=')
-					{
-						bLeft=	false;
-						
-						continue;
-					}
-					
-					if(bLeft)
-						eq.leftEq.textAdded+=	text[i];
-					else
-						eq.rightEq.textAdded+=	text[i];
-				}
-				eq.leftEq.update();
-				eq.rightEq.update();
-				
-				return eq;
-			}
-			
-			// public class Equation
-			function Equation() // Constructor >> public Equation()
-			{
-				// Variables
-				this.leftEq=	new SubEquation(); // public SubEquation	leftEq;
-				this.rightEq=	new SubEquation(); // public SubEquation	rightEq;
-				
-				this.toString=	function()
-				{
-					return "Left: "+this.leftEq.toString()+"; Right: "+this.rightEq.toString()+";";
-				};
-				
-				this.solve=	function()
-				{
-					
-				}
-				
-				this.moveToOtherSide=	function(leftEqSpot, rightEqSpot)
-				{
-					this.leftEq.removeSpot(leftEqSpot.index);
-					this.rightEq.removeSpot(rightEqSpot.index);
-					
-					this.leftEq.addSpot(rightEqSpot);
-					this.rightEq.addSpot(leftEqSpot);
-					
-					return this;
-				}
-				
-				return this;
-			}
-			
-			// public class SubEquation
-			function SubEquation() // Constructor >> public SubEquation()
-			{
-				// Variables
-				this.allSpots=	new Array();	// public EqSpot[]	allSpots;
-				this.textAdded=	"";
-				
-				this.toString=	function()
-				{
-					// Variables
-					var	str=	"";
-					
-					for(var i= 0; i< this.allSpots.length; i++)
-						str+=	this.allSpots[i].toString();
-					
-					return str;
-				};
-				
-				this.addSpot=	function(spot)
-				{
-					this.allSpots.push(spot);
-				};
-				
-				this.removeSpot=	function(index)
-				{
-					this.allSpots.splice(index, 1);
-				};
-				
-				this.update=	function()
-				{
-					// Variables
-					var	index=	0;
-					
-					this.textAdded=	this.textAdded.replace(/\s/g, "");
-					this.allSpots.push(new EqSpot(index));
-					for(var i= 0; i< this.textAdded.length; i++)
-					{
-						switch(this.textAdded[i])
-						{
-							case '+':
-							case '-':
-							case '/':
-							case '*':
-								this.allSpots.push(new EqSpot(++index));
-								this.allSpots[index].arithType=	this.textAdded[i];
-								break;
-							default:
-								this.allSpots[index].text+=	this.textAdded[i]
-								break;	// Add to eq spot
-						}
-					}
-					this.destroyEmptySpots();
-				};
-				
-				this.destroyEmptySpots=	function()
-				{
-					for(var i= this.allSpots.length-1; i>= 0; i--)
-					{
-						if(this.allSpots[i].isEmpty())
-						{
-							this.removeSpot(i);
-						}
-					}
-				}
-				
-				return this;
-			}
-			
-			// public class EqSpot
-			function EqSpot(pmIndex) // Constructor >> public EqSpot(int pmIndex)
-			{
-				// Variables
-				this.arithType=	''; // public char	arithType;
-				this.index=	pmIndex;
-				this.text=	"";
-				
-				this.toString=	function()
-				{
-					return "Spot { "+this.arithType+this.text+" } ";
-				};
-				
-				this.isEmpty=	function()
-				{
-					return (this.arithType== '' && this.text== "");
-				};
-				
-				return this;
-			}
-		</script>
-	</head>
-	
-	<body>
-		
-		<div class="container">
-			
-			<div id="header">Something or another</div>
-			
-			<div id="content">
-				<input id="input" type="text" placeholder="x-1=4" />
-				<div id="output"></div>
-			</div>
-			
-		</div>
-		
-	</body>
-</html>
+    .bs-callout-left {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-left-width: 5px;
+          border-radius: 3px;
+          border-left-color: LightSlateGray;
+          width: 90%;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: LightGray;
+          display: none;
 
-<!-- End of File /-->
+        }
+        .bs-callout-right {
+          padding: 20px;
+          margin: 20px 0;
+          border: 1px solid #eee;
+          border-right-width: 5px;
+          border-radius: 3px;
+          border-right-color: oldlace;
+        }
+        .navbar { box-shadow: 0px 5px 3px -3px #888}
+</style>
+</head> 
+<body>
+	<!--navbar start-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><kbd>Surge Site</kbd></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="algebra.html">Algebra</a></li>
+        <li><a href="trigonometry.html">Trigonometry</a></li>
+        <li><a href="converters.html">Converters</a></li>
+        </ul>       
+	  <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="paul.html">Paul</a></li>
+            <li><a href="isabel.html">Isabel</a></li>
+            <li><a href="Dhruv's page.html">Dhruv</a></li>
+            <li><a href="cory.html">Cory</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="john.html">John Redden</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!--navbar end-->
+	<br>
+	<div id="monster" class="bs-callout-left">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="images/paul.jpg" alt="Paul Gonzalez" title="Paul" class="img-circle">
+                </div>
+                <div class="col-sm-9">
+                    <p>
+                        <strong>Paul Gonzalez</strong> - Hi im paul, i like doing stuff
+                        <p>
+                          <ul>
+                            <li>Role in this project: Mentored, Designed Graphing calculator</li>
+                            
+                          </ul>
+                        </p><a href="github.com" target="_blank"><br>My Github</a>
+                        <br /><br />
+                        
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#monster').hide().fadeIn('slow'); 
+});
+
+</script>
+</body>
+</html>                                		
