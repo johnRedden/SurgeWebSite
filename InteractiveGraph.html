@@ -1,0 +1,177 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SURGE jsxGraph Tutorial</title>
+
+    <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+
+    <!-- include the jsxGraph sytle sheet-->
+    <link href="css/jsxgraph.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div class="container ">
+        <h1>Graph</h1>
+        <br />
+        <div class="panel panel-default center-block" style="width:50%;text-align:center">
+            
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group container-fluid">
+                        <label for="userInput">Enter Something to be Graphed</label>
+                        <div class="row">
+                 
+                            <input class="form-control center-block input-lg" id="userstr" type="text" style="width:25%" placeholder="sin(x)">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <b>Graph AWWWWWW! Fail</b>
+        <div id="myBox" class="jxgbox clearfix center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+       
+
+    </div>
+    
+    <script>
+
+        // Wait for the html document to be ready
+        $(document).ready(function () {
+            // Step 1: Begin by initializing the jsxGraph and set a reference to it called board or whatever you want.
+            // Lots of options (called attributes) to choose from
+            // takes some getting used to... but here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/JXG.Board.html
+            
+            var board = JXG.JSXGraph.initBoard('myBox',
+                     {
+                         boundingbox:[-7,2,7,-2],
+                         axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                         grid: { strokeWidth: 0.75 },
+                         showCopyright: false,
+                         showNavigation: false,
+                         keepaspectratio: false, //square graph coming in
+                         zoom: {
+                            factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                            factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                            wheel: true,   // allow zooming by mouse wheel
+                            needshift: false, // mouse wheel zooming needs pressing of the shift key
+                             eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                         },
+                         pan: {
+                            enabled: true,   // Allow panning
+                            needTwoFingers: true, // panningis done with two fingers on touch devices
+                            needshift: false, // mouse panning needs pressing of the shift key
+                         }
+
+                     });
+
+          
+        });
+        var userstr
+        function calculate() {
+            var asciiMath = $('.userstr').html();
+            //using the asciiMath to javascriptMath library mathjs.js
+            var jsMath = mathjs(asciiMath);
+            var result = eval(jsMath); //eval is a javascript function
+            $('.myBox').html("= " + result);
+        }
+
+    </script>
+
+</body>
+
+</html>
+                            
+    <script>
+            var initialStr = "Simple Calculator";
+            var isNewCalculation = true;
+            $('.line1').html(initialStr);
+            $('.btn').on('click', buildLine1String);
+
+            function buildLine1String() {
+
+                var btnPressed = $(this).attr('name');
+                var line1Str = $('.line1').html();
+
+                if (isNewCalculation)
+                    line1Str = "";
+
+                if (btnPressed === '=') {
+                    //$('.line2').html("="+eval(line1Str));
+                    calculate();
+                    isNewCalculation = true;
+              
+            function calculate() {
+                var asciiMath = $('.line1').html();
+                //using the asciiMath to javascriptMath library mathjs.js
+                var jsMath = mathjs(asciiMath);
+                var result = eval(jsMath); //eval is a javascript function
+                $('.line2').html("= " + result);
+            }
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+        
+            <script>
+
+            // Add keyup listener to the input box
+            $('#userInput').on('keyup', squareResults);
+
+            function squareResults() {
+                // get the value string from the input text box and convert it to a float (real number)
+                var n = parseFloat($('#userInput').val());
+
+                // do the math and build the output string
+                var outputDisplayStr;
+                if(isNaN(n)){
+                    outputDisplayStr = "Enter a number!"
+                }else{
+                    outputDisplayStr = n + "^2 = " + Math.pow(n, 2);
+                }
+
+                // set the html of the output span to the result.
+                $('#output').html(outputDisplayStr);
+
+                // This is very basic, there are many ways to do this! Paul can do it in one line I bet.
+            };
+            </script>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+</body>
+</html>
+
+
