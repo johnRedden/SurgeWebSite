@@ -38,7 +38,12 @@
           border: 1px solid #eee;
           border-right-width: 5px;
           border-radius: 3px;
-          border-right-color: oldlace;
+          border-right-color: LightGreen;
+          background-color: AliceBlue;
+          width: 90%;
+          margin-left: auto;
+          margin-right: auto;
+          display: none;
         }
         .navbar { box-shadow: 0px 5px 3px -3px #888}
 </style>
@@ -80,22 +85,66 @@
   </div><!-- /.container-fluid -->
 </nav><!--navbar end-->
 	<br>
-	<div class = "jumbotron">
-    <img class="img-thumbnail" src="images/trigFunctionsSnip.PNG" />
-    <a href="http://s3-us-west-1.amazonaws.com/cosmathsurge/TrigFunctions/web/index.html">Trig Fucntions</a>
-   
-   </div>
-   
-    <img class="img-thumbnail" src="images/degRadSnip.PNG"/>
-    <a href="http://s3-us-west-1.amazonaws.com/cosmathsurge/DegRadConverter/web/degreeradianconverter.html">Deg to Rad Converter</a>
+  <div id = "monster" class="bs-callout-left">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="images/trigFunctionsSnip.PNG" alt="Functionsnip" title="Trig(fx)calculator" class="img-thumbnail">
+                </div>
+                <div class="col-sm-9">
+                    <p>
+                        <h2 align = "center">Trig Functions Calculator</h2>
+                        
 
-<div class = "jumbotron">
-    <img src="images/unitcircle.png" /></div>
+                            <p align="center">
+                     <a href = "http://s3-us-west-1.amazonaws.com/cosmathsurge/TrigFunctions/web/index.html" type="button" class="btn btn-warning glyphicon glyphicon-arrow-right"></a></p>
+                          
+                        <br /><br />
+                        
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+	
+<div id = "dinosaur" class="bs-callout-right">
+            <div class="row">
+                <div class="col-sm-9">
+                    <p>
+            <h2 align = "center">Deg to Rad Converter</h2>
+            <br/>
+            <p align="center">
+                     <a href = "http://s3-us-west-1.amazonaws.com/cosmathsurge/DegRadConverter/web/degreeradianconverter.html"type="button" class="btn btn-warning glyphicon glyphicon-arrow-right"></a></p>
+            
+          </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="images/degRadSnip.PNG" alt="Paul" title="Paul" class="img-thumbnail">
+                    
+                </div>
+            </div>
+        </div>
+
+   <div id = "dinosaur2" class="bs-callout-left">
+            <div class="row">
+<div class="col-sm-3">
+                  <img src="images/unitcircle.png" />
+                </div>
+                <div class="col-sm-9">
+<p><h2 align = "center">Unit Circle</h2>
+                    
+</p>
+                </div>
+            </div>
+        </div>
+
+    
 
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
     $('#monster').hide().fadeIn('slow');
+    $('#dinosaur').hide().delay(0600).fadeIn('slow');
+    $('#dinosaur2').hide().delay(0900).fadeIn('slow');
 });
 
 </script>

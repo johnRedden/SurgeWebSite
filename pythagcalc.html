@@ -4,16 +4,9 @@
 <html>
 
 	<head>
+		<title>Pythagorean Calculator</title>
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<style>
-			#pythcalc
-			{
-				width:	50%;
-				margin-top:	16px;
-				margin-right:	25%;
-				margin-left:	25%;
-				background-color:	lightgray;
-			}
 			
 			.pctb
 			{
@@ -29,22 +22,16 @@
 				margin:	0px;
 				padding:	0px;
 			}
-			
-			#btnAll
-			{
-				width:	312px;
-				margin-top:	4px;
-				margin-right:	4px;
-				padding:	0px;
-			}
 		</style>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<script type="text/javascript">
 			$(document).ready(function(args)
 			{
 				$("#formx").on("change", "#a", onAChanged
 				).on("change", "#b", onBChanged
 				).on("change", "#c", onCChanged);
+				updateMathJax();
 			});
 			
 			function onAChanged(args, outside)
@@ -117,136 +104,80 @@
 			{
 				// Variables
 				var	tempA, tempB, tempC;
+				var	nana=	isNaN(parseFloat(a.val()));
+				var	nanb=	isNaN(parseFloat(b.val()));
+				var	nanc=	isNaN(parseFloat(c.val()));
+				var	aoverc=	parseFloat(a.val())> parseFloat(c.val());
+				var	boverc=	parseFloat(b.val())> parseFloat(c.val());
 				
-				if(isNaN(parseFloat(a.val())))// || id=== 0)
+				if(nana || nanb || nanc)
 				{
-					$("#output").html
-					(
-						(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2)+
-						" + "+parseFloat(b.val()).toFixed(2)+
-						" = "+parseFloat(c.val()).toFixed(2)
-					);
-					
-					a.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2));
-					onUpdateA({}, true);
-				}
-				else if(isNaN(parseFloat(b.val())))// || id=== 1)
-				{
-					$("#output").html
-					(
-						parseFloat(a.val()).toFixed(2)+" + "+
-						(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2)+
-						" = "+parseFloat(c.val()).toFixed(2)
-					);
-					
-					b.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2));
-					onUpdateB({}, true);
-				}
-				else if(isNaN(parseFloat(c.val())))// || id=== 2)
-				{
-					$("#output").html
-					(
-						parseFloat(a.val()).toFixed(2)+" + "+
-						parseFloat(b.val()).toFixed(2)+" = "+
-						(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2)
-					)
-					
-					c.val((Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2));
-					onUpdateC({}, true);
-				}
-				else if(parseFloat(a.val())> parseFloat(c.val()))
-				{
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					$("#output").html
-					(
-						tempA+" + "+tempB+" = "+tempC
-					);
-				}
-				else if(parseFloat(b.val())> parseFloat(c.val()))
-				{
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					$("#output").html
-					(
-						tempA+" + "+tempB+" = "+tempC
-					);
-				}
-				else if(id=== 0)
-				{
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					$("#output").html
-					(
-						tempA+" + "+tempB+" = "+tempC
-					);
+					if(nana)
+						onUpdateA({}, true);
+					if(nanb)
+						onUpdateB({}, true);
+					if(nanc)
+						onUpdateC({}, true);
 				}
 				else
 				{
-					tempA=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					a.val(tempA);
-					onUpdateA({}, true);
-					
-					tempB=	(Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2);
-					b.val(tempB);
-					onUpdateB({}, true);
-					
-					tempC=	(Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2);
-					c.val(tempC);
-					onUpdateC({}, true);
-					
-					$("#output").html
-					(
-						tempA+" + "+tempB+" = "+tempC
-					);
+					if(aoverc || boverc)
+					{
+						onUpdateC({}, true);
+						onUpdateA({}, true);
+						onUpdateB({}, true);
+					}
+					else if(id=== 0)
+					{
+						onUpdateB({},true);
+						onUpdateA({},true);
+						onUpdateC({},true);
+					}
+					else
+					{
+						onUpdateA({}, true);
+						onUpdateB({}, true);
+						onUpdateC({}, true);
+					}
 				}
+				
+				$(".output").html
+				(
+					"\\["+
+					parseFloat(a.val()).toFixed(2)+"^{2}"+
+					" + "+
+					parseFloat(b.val()).toFixed(2)+"^{2}"+
+					" = "+
+					parseFloat(c.val()).toFixed(2)+"^{2}"+
+					"\\]"
+				);
+				updateMathJax();
+			}
+			
+			function updateMathJax()
+			{
+				MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output"]);
 			}
 		</script>
 	</head>
 	
 	<body>
-		<div id="pythcalc">
-			<center>
-				Pythagorean Calculator<br />
-				<form id="formx">
-					<input id="a" class="pctb" type="text" placeholder="a" />
-					<input id="b" class="pctb" type="text" placeholder="b" />
-					<input id="c" class="pctb" type="text" placeholder="c" />
-				</form>
-				<br />
-				<br />
-				Results: <span id="output">a^2 + b^2 = c^2</span>
-			</center>
+		<div class="container">
+			<div class="panel panel-default center-block" style="width:50%; text-align: center;margin-top:16px">
+				<div class="panel-heading">
+					Pythagorean Calculator
+				</div>
+				<div class="panel-body">
+					<form id="formx">
+						<input id="a" class="pctb" type="text" placeholder="a" />
+						<input id="b" class="pctb" type="text" placeholder="b" />
+						<input id="c" class="pctb" type="text" placeholder="c" />
+					</form>
+				</div>
+				<div class="panel-footer">
+					Results: <span class="output">\[ a^{2} + b^{2} = c^{2} \]</span>
+				</div>
+			</div>
 		</div>
 	</body>
 
