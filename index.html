@@ -7,23 +7,47 @@
       type="image/ico" 
       href="images/bolt.ico">
 <title >Surge | Home</title>
-<link rel="stylesheet" href="css/bootstrap.css">
- <!--source files and their links in case of updates for future reference
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/javascriptfilesource.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/javascriptfilesource.js"></script>
+
+    <!--source files and their links in case of updates for future reference
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+
 <style type="text/css">
-     .bs-example{
-        margin: 20px;
-    }
+
     body { padding-top: 50px;
-    background-color: WhiteSmoke;
+        background-color: WhiteSmoke;
     
      }
+    .navbar { box-shadow: 0px 5px 3px -3px #888}
+    .center{
+        float:none;
+        margin:0 auto
+    }
+    .jumbotron{
+        margin-top:40px;
+        padding: 20px;
+        
+    }
+    #monster li{
+        margin-bottom:10px;
+        visibility:hidden;
+    }
+    .groupmembers{
+        list-style-type:none;
+    }
+ 
 
+
+    .bs-example{
+        margin: 20px;
+    }
     .bs-callout-left {
           padding: 2px;
           margin: 20px 0;
@@ -47,29 +71,10 @@
           border-right-color: oldlace;
         }
 
-        .navbar { box-shadow: 0px 5px 3px -3px #888}
-
-      .footer {
-    position: fixed; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-}
-.footer {
-  position: relative;
- border: 1px;
-  } 
-  .jumbotron{
-    position: relative;
-    margin-right: auto;
-    margin-left: auto;
-    width: 97%;
-
-  }
 
     </style>
 </head> 
+
 <body>
 	<!--navbar start-->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -81,7 +86,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"><kbd>Surge Site</kbd></a>      
+      <a class="navbar-brand" href="index.html"><kbd>COS mathApp SURGE</kbd></a>      
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -106,89 +111,135 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav><!--navbar end-->
-	<br>
-  <div class="jumbotron">
-            <h1 class = "text-center">S.U.R.G.E</h1>
-          <table border = "0" width = "100%">
-  
-    <tr><td  width=45%><td width = "55%"><code>S</code>cience</td></td></tr>
-    <tr><td><td><code>U</code>ndergraduate</td></tr>
-    <tr><td><td><code>R</code>esearch</td></tr>
-    <tr><td><td><code>G</code>roup</td></td></tr>
-    <tr><td><td><code>E</code>xperience</td></td></tr>
- 
-</table>
-          </div>
-          <br>
-  
-	<div id="monster" class="jumbotron"><!--box thing start-->
-            <div class="row">
-               
-                <div class="col-sm-12">
-                    <p>
-                        <h2>Surge Program Goals are:</h2>
-                        <div>
-                          <ul>
-                            <li id = "raptor">To increase the exposure of community college Science, Technology, Engineering, or Mathematic (STEM) majors to laboratory research equipment, methodologies and current research.</li>
-                            <br>
-                            <li id = "dog">To enhance access to higher math classes by increasing student placement scores through utilizing an intense one-week "Math Jam" model. In addition, student success and retention in higher level course will be increased by student preparation using Math, Chemistry and Physics Jams.</li>
-                            <br>
-                            <li id = "cat">To improve the rate of graduation and transfer among underserved populations in STEM fields by creating a pipeline to appropriate student support programs.</li>
-                          </ul>
+
+<!--main page content in a Bootstrap 'container'-->
+<div class="container">
+    <!--main Jumbotron-->
+    <div class="jumbotron">
+        <!-- jumbotron with two columns-->
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="text-center"><h2>S.U.R.G.E</h2></div>
+                <table class="center">
+                    <tr><td><code>S</code></td><td>cience</td></tr>
+                    <tr><td><code>U</code></td><td>ndergraduate</td></tr>
+                    <tr><td><code>R</code></td><td>esearch</td></tr>
+                    <tr><td><code>G</code></td><td>roup</td></tr>
+                    <tr><td><code>E</code></td><td>xperience</td></tr>
+                </table>
+            </div>
+            <div class="col-sm-8">
+                <!--start SURGE content-->
+                <div id="monster" >
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <h2>Program Goals:</h2>
+                                <ul> <!-- fixed annoying push problem with css visibilty instead of jquery using display-->
+                                    <li id="raptor">To increase the exposure of community college Science, Technology, Engineering, or Mathematic (STEM) majors to laboratory research equipment, methodologies and current research.</li>
+                                     
+                                    <li id="dog">To enhance access to higher math classes by increasing student placement scores through utilizing an intense one-week "Math Jam" model. In addition, student success and retention in higher level course will be increased by student preparation using Math, Chemistry and Physics Jams.</li>
+                                 
+                                    <li id="cat">To improve the rate of graduation and transfer among underserved populations in STEM fields by creating a pipeline to appropriate student support programs.</li>
+                                </ul>
+                            </div>
+                           
                         </div>
-                        <br />
-                      <br />
-                        
-                        
-                    </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <!--end Jumbotron-->
+
+    <div class="well">
+        <h3>Math App SURGE Objective:</h3>
+        <p>Design and build a useful single page web application (SPA) that solves some mathematical problem using freely available open source solutions. The project will attempt to emulate the full software development experience from idea generation, design considerations, reading documentation, implementation and testing, to publishing using a unique domain name. Students will be encouraged to produce an open and free resource that is available to a user base that extends beyond COS.
+        </p>
+        <div class="row">
+            
+            <div class="col-sm-6">
+                <div class="well info">
+                    <p><strong>Group #1 Members</strong></p>
+                    <ul class="groupmembers">
+                        <li> <span class="glyphicon glyphicon-check"></span> John Redden < jt.redden@gmail.com ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Vylen Valdez < vylenvaldez@gmail.com ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Randell Pimentel < randellgp@gmail.com ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Elvin Rivera < elvinkrivera@gmail.com ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Jason Pieros < soreipj@gmail.com ></li>
+                    </ul>
                 </div>
             </div>
-        </div><!--box thing end-->
-       <br>
-        <div class="row marketing">
-       <div class="col-lg-4">
-          <div class = "text-center"><h4><code>Duane Goodwin</code></h4>
-          <p>SURGE Activity Lead</p>
-          <p>duaneg@cos.edu</p>
-          <p>(559)737-6136</p>
+            <div class="col-sm-6">
+                <div class="well">
+                    <p><strong>Group #2 Members</strong></p>
+                    <ul class="groupmembers">
+                        <li> <span class="glyphicon glyphicon-check"></span> John Redden < jt.redden@gmail.com ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Paul Gonzalez-Becerra < pgonzbecer@gmail.com ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Isabel Lambert < isabel.lambert@giant.cos.edu ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Cory Lewis < cory.lewis@giant.cos.edu ></li>
+                        <li> <span class="glyphicon glyphicon-check"></span> Dhruv Patel < dhruv.patel@giant.cos.edu ></li>
+                    </ul>
+                </div class="well">
+            </div>
         </div>
-        </div>
+    </div>
        
+    <div class="row marketing">
         <div class="col-lg-4">
-          <div class = "text-center">
-          <img class="img-thumbnail" src="images/logo.jpg"/>
+            <div class="text-center">
+                <h4><code>Duane Goodwin</code></h4>
+                <p>SURGE Activity Lead</p>
+                <p>duaneg@cos.edu</p>
+                <p>(559)737-6136</p>
+            </div>
         </div>
-         </div>
-      
-        <div class="col-lg-4">
-          <div class = "text-center">
-          <h4>Webpages</h4>
-         <p> <a href = "http://www.cos.edu/Pages/default.aspx" type="button" class="btn btn-primary">Main COS page</a></p>
-           <a href = "http://www.cos.edu/Academics/MathEngineering/MESA/Pages/default.aspx" type="button" class="btn btn-success">Mesa</a>
-            <a href = "http://www.cos.edu/Academics/MathEngineering/SURGE/Pages/default.aspx" type="button" class="btn btn-danger">Surge</a>
-          </div>
-      </div>
-      </div>
-      </div>
 
-       <br>
+        <div class="col-lg-4">
+            <div class="text-center">
+                <img class="img-thumbnail" src="images/logo.jpg" />
+                <div class="info">*The COS Science Undergraduate Research Group Experience (SURGE) program is funded by the U.S. Department of Education.</div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="text-center">
+                <h4>Webpages</h4>
+                <p> <a href="http://www.cos.edu/Pages/default.aspx" type="button" class="btn btn-primary">Main COS page</a></p>
+                <a href="http://www.cos.edu/Academics/MathEngineering/MESA/Pages/default.aspx" type="button" class="btn btn-success">MESA</a>
+                <a href="http://www.cos.edu/Academics/MathEngineering/SURGE/Pages/default.aspx" type="button" class="btn btn-danger">SURGE</a>
+            </div>
+        </div>
+    </div>
+ </div>
+ <!--end main page-->
+
+
 <hr>
-<footer class="footer">
-  
-      <p class="text-muted glyphicon glyphicon-copyright-mark">Copyright 2015</p>
-      
-    </footer>
+<footer>
+    <div class="text-center  text-muted"><span class="glyphicon glyphicon-copyright-mark"></span> 2015 Open Source <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a> (MIT)  COS SURGE</div>
+</footer>
   
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-    $('#monster').hide().fadeIn('slow'); 
-    $('#raptor').hide().delay(0500).fadeIn('slow');
-    $('#dog').hide().delay(0800).fadeIn('slow');
-    $('#cat').hide().delay(1100).fadeIn('slow');
+    initiateFade();
 });
+function initiateFade() {
+
+    // successive 1 second fadeins
+    $('#raptor').css({ opacity: 0.0, visibility: "visible" }).animate({ opacity: 1.0 }, 1 * 1000, function () { //animation completed do this
+        $('#dog').css({ opacity: 0.0, visibility: "visible" }).animate({ opacity: 1.0 }, 1 * 1000, function () {
+            $('#cat').css({ opacity: 0.0, visibility: "visible" }).animate({ opacity: 1.0 }, 1 * 1000);
+        });
+    });
+    // jquery uses 'display' which eliminates the element... visibility just makes it hidden
+    //$('#monster').hide().fadeIn('slow');
+    //$('#raptor').hide().delay(0500).fadeIn('slow');
+    //$('#dog').hide().delay(0800).fadeIn('slow');
+    //$('#cat').hide().delay(1100).fadeIn('slow');
+
+}
 </script>
 
-<!--<img src="images/logo.jpg" alt="Logo" title="Logo 61% Opacity " class="img-square">-->
 </body>
 </html>                                		
