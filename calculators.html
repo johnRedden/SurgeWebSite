@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><!--just delete user-scalable=no if you want to be able to zoom on the website-->
+<link rel="icon" 
+      type="image/ico" 
+      href="images/bolt.ico">
+<title >Surge | Calculators</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/javascriptfilesource.js"></script>
+
+    <!--source files and their links in case of updates for future reference
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+
+<style type="text/css">
+    body { 
+        padding-top: 50px;
+        background-color: WhiteSmoke;
+     }
+    .navbar { box-shadow: 0px 5px 3px -3px #888}
+    .center{
+        float:none;
+        margin:0 auto
+    }
+    .topContainer{
+        margin-top:40px;
+    }
+    .left{
+        border-left-width:5px;
+        border-left-color:lightblue;
+    }
+    .right{
+        border-right-width:5px;
+        border-right-color:lightblue;
+    }
+</style>
+</head> 
+
+<body>
+<!--navbar start-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><kbd>COS mathApp SURGE</kbd></a>      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="algebra.html">Algebra</a></li>
+        <li><a href="trigonometry.html">Trigonometry</a></li>
+        <li><a href="calculators.html">Calculators</a></li>
+        <li><a href="Graphs.html">Graphs</a></li>
+        </ul>       
+	  <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="paul.html">Paul</a></li>
+            <li><a href="isabel.html">Isabel Lambert</a></li>
+            <li><a href="Dhruv's page.html">Dhruv</a></li>
+            <li><a href="cory.html">Cory</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="john.html">John Redden</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!--navbar end-->
+
+<!--main page content in a Bootstrap 'container'-->
+<div class="container">
+
+    <!--Container for Simple Calculator App-->
+    <div class="well topContainer left">
+       <div class="row">
+           <div class="col-sm-3">
+               <a href="calculator.html" target="_blank">
+                <img class="img-thumbnail" src="images/calculatorSnip.PNG" alt="IMG" title="Simple Calculator" data-toggle="tooltip">
+               </a> 
+           </div>
+           <div class="col-sm-9">
+               <h3>Simple Calculator App</h3>
+               <p>This is a simple calculator app which demonstrates that those $1.99 calculators you buy do not work by magic. Somebody must actually tell the computer what to do. Here we made use of the following:</p>
+               <ul>
+                   <li>JQuery for the javascript programming.</li>
+                   <li>Bootstrap for the buttons and interface.</li>
+                   <li>Right-click to view source.</li>
+               </ul>
+               <a class="btn btn-primary" href="calculator.html" target="_blank">Launch Calculator <span class="glyphicon glyphicon-chevron-right"></span></a>              
+           </div>
+       </div>
+    </div>
+    <!--End container for Simple Calculator App-->
+
+    <!--Container for Simple Squaring App-->
+    <div class="well topContainer right">
+        <div class="row">
+            <div class="col-sm-9">
+                <h3>Simple Squaring App</h3>
+                <p>This is a simple squaring app was meant to introduce the the team to bootstrap, jquery, and the javascript math library. We defined an onKeyUp event to avoid using buttons.</p>
+                <ul>
+                    <li>JQuery for the javascript programming.</li>
+                    <li>Bootstrap for the buttons and interface.</li>
+                    <li>For <kbd>x^2</kbd> use <kbd>math.pow(x,2)</kbd> Right-click to view source.</li>
+                </ul>
+                <a class="btn btn-primary" href="squaring.html" target="_blank">Launch Calculator <span class="glyphicon glyphicon-chevron-right"></span></a>
+              
+            </div>
+            <div class="col-sm-3">
+                <div>
+                    <br />
+                    <a href="squaring.html" target="_blank">
+                        <img class="img-thumbnail" src="images/squareSnip.PNG" alt="IMG" title="Squaring App" data-toggle="tooltip">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End container for Simple Squaring App-->
+
+    <!--Container for Simple Pythagorean App-->
+    <div class="well left">
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="pythagcalc.html" target="_blank">
+                    <img class="img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Pit%C3%A1goras-RP-01.jpg" alt="IMG" title="Pythagorean Calculator" data-toggle="tooltip">
+                </a>
+            </div>
+            <div class="col-sm-9">
+                <h3>Pythagorean Calculator App</h3>
+                <p>This app is a little more complex and calculates (no buttons!) the third side of a right triangle given the other two. Makes use of the Pythagorean Theorem, which is very old technology!</p>
+                <ul>
+                    <li>JQuery for the javascript programming.</li>
+                    <li>Bootstrap for the buttons and interface.</li>
+                    <li>Dynamic MathJax for real-time math rendering. Right-click to view source.</li>
+                </ul>
+                <a class="btn btn-primary" href="pythagcalc.html" target="_blank">Launch Calculator <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+    <!--End container for Simple Pythagorean App-->
+
+
+ </div>
+ <!--end main page-->
+
+
+<hr>
+<footer>
+    <div class="text-center  text-muted"><span class="glyphicon glyphicon-copyright-mark"></span> 2015 Open Source <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a> (MIT)  COS SURGE</div>
+</footer>
+  
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    // add bootstrap class 'active' to li in nav bar to highlight
+    $('nav [href="calculators.html"]').parent().addClass('active');
+   
+});
+
+</script>
+
+</body>
+</html>                                		
