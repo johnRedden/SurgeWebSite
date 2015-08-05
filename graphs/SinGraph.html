@@ -22,12 +22,12 @@
     <title>SURGE jsxGraph Tutorial</title>
 
     <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/jsxgraphcore.js"></script>
 
     <!-- include the jsxGraph sytle sheet-->
-    <link href="css/jsxgraph.css" rel="stylesheet" />
+    <link href="../css/jsxgraph.css" rel="stylesheet" />
 
     <style>
         body {
@@ -39,29 +39,27 @@
 <body>
 
     <div class="container ">
-        <h1>Hello jsxGraph.js</h1>
+        <div class="text-center">
+            <h1>Configuring jsxGraphs</h1>
 
-        <!--create a div to contain the graph -->
-        <div id="myBox" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
-        <br />
-        <div id="myBoxC" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <!--create a div to contain the graph -->
+            <div id="myBox" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
             <br />
-       <div id="myBoxT" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <div id="myBoxC" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <br />
+            <div id="myBoxT" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
             <br />
 
-        </div>
-    <br />
-        <div class="well">
-            Move A and B around. <br />
-            Right click to view the source and read the tutorial.
-        </div>
-        <div id="linea"></div>
-        <div id="lineb"></div>
-        <div id="linec"></div>
 
+            <div class="well">
+                Drag to pan, use the mousewheel to zoom.
+            </div>
+            <div id="linea"></div>
+            <div id="lineb"></div>
+            <div id="linec"></div>
+        </div>
+   
     </div>
-    </div>
-
     <script>
 
         // Wait for the html document to be ready
@@ -80,7 +78,7 @@
                          zoom: {
                             factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
                             factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
-                            wheel: false,   // allow zooming by mouse wheel
+                            wheel: true,   // allow zooming by mouse wheel
                             needshift: false, // mouse wheel zooming needs pressing of the shift key
                              eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
                          },
@@ -102,7 +100,7 @@
                           zoom: {
                               factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
                               factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
-                              wheel: false,   // allow zooming by mouse wheel
+                              wheel: true,   // allow zooming by mouse wheel
                               needshift: false, // mouse wheel zooming needs pressing of the shift key
                               eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
                           },
@@ -123,7 +121,7 @@
                       zoom: {
                           factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
                           factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
-                          wheel: false,   // allow zooming by mouse wheel
+                          wheel: true,   // allow zooming by mouse wheel
                           needshift: false, // mouse wheel zooming needs pressing of the shift key
                           eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
                       },

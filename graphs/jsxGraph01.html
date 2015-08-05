@@ -9,43 +9,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>SURGE jsxGraph Tutorial</title>
+    <title>SURGE jsxGraph Demonstration</title>
 
     <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/jsxgraphcore.js"></script>
 
     <!-- include the jsxGraph sytle sheet-->
-    <link href="css/jsxgraph.css" rel="stylesheet" />
+    <link href="../css/jsxgraph.css" rel="stylesheet" />
 
     <style>
         body {
             background-color: white;
         }
-
     </style>
 </head>
 
 <body>
 
-    <div class="container ">
-        <h1>Hello jsxGraph.js</h1>
+    <div class="container">
+        <div class="text-center">
+            <h1>jsxGraph Demonstration</h1>
 
-        <!--create a div to contain the graph -->
-        <div id="myBox" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <!--create a div to contain the graph -->
+            <div id="myBox" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
 
-        <br />
-        <div class="well">
-            Move A and B around. <br />
+            <br />
+        </div>
+        <div class="well text-center">
+            Move A, B and C .<br />
             Right click to view the source and read the tutorial.
+            <div id="linea"></div>
+            <div id="lineb"></div>
+            <div id="linec"></div>
         </div>
-        <div id="linea"></div>
-        <div id="lineb"></div>
-        <div id="linec"></div>
-       
-        </div>
+
     </div>
+
 
     <script>
         
@@ -130,10 +131,6 @@
                 return ((Math.acos(pyth(s1.L(), L2.L(), L1.L()))) * (180 / 3.14159)).toFixed(2);
             }
         
-            
-               
-
-
             // How the heck did I get those numbers to work?  Random goofing around and the documentation!
             // But I finally got it and it looks nice! I bet jsxGraph can give that angle to us... just got to figure out how.
 
