@@ -39,25 +39,21 @@
 <body>
 
     <div class="container ">
-        <h1>Hello jsxGraph.js</h1>
-
-        <!--create a div to contain the graph -->
-        <div id="myBox" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+        <h1>Trigonometry Graphs</h1>
         <br />
+       
+        <b>Sin(x)</b>
+             <br />
+        <b>Cos(x)</b>
         <div id="myBoxC" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
             <br />
+        <b>Tan(x)</b>
        <div id="myBoxT" class="jxgbox clearfix" style='width:400px; height:250px; border: 1px solid lightgray'></div>
             <br />
 
         </div>
     <br />
-        <div class="well">
-            Move A and B around. <br />
-            Right click to view the source and read the tutorial.
-        </div>
-        <div id="linea"></div>
-        <div id="lineb"></div>
-        <div id="linec"></div>
+       
 
     </div>
     </div>
@@ -80,7 +76,7 @@
                          zoom: {
                             factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
                             factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
-                            wheel: false,   // allow zooming by mouse wheel
+                            wheel: true,   // allow zooming by mouse wheel
                             needshift: false, // mouse wheel zooming needs pressing of the shift key
                              eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
                          },
@@ -89,6 +85,7 @@
                             needTwoFingers: true, // panningis done with two fingers on touch devices
                             needshift: false, // mouse panning needs pressing of the shift key
                          }
+                         
                      });
           
             var boardC = JXG.JSXGraph.initBoard('myBoxC',
@@ -102,7 +99,7 @@
                           zoom: {
                               factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
                               factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
-                              wheel: false,   // allow zooming by mouse wheel
+                              wheel: true,   // allow zooming by mouse wheel
                               needshift: false, // mouse wheel zooming needs pressing of the shift key
                               eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
                           },
@@ -123,7 +120,7 @@
                       zoom: {
                           factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
                           factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
-                          wheel: false,   // allow zooming by mouse wheel
+                          wheel: true,   // allow zooming by mouse wheel
                           needshift: false, // mouse wheel zooming needs pressing of the shift key
                           eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
                       },
