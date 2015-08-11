@@ -67,24 +67,26 @@
 
             // Step 2: add some graphs.  I suppose we start with points.
             // Here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Point.html
-
+            var segmenta =s1
+            var segmentb = s2
+            var segmentc = s3
             var p1 = board.create('point', [3, 2], { color: 'red' }).on('drag',function(){
-                $('#lineb').html("b=" + L1.L().toFixed(4));
-                $('#linec').html("c=" + s1.L().toFixed(4));
-                s1.setLabelText("c=" + s1.L().toFixed(4));
-                L1.setLabelText("b=" + L1.L().toFixed(4));
+                $('#lineb').html("b=" + s2.L().toFixed(4));
+                $('#linec').html("c=" + s3.L().toFixed(4));
+                s3.setLabelText("c=" + s3.L().toFixed(4));
+                s2.setLabelText("b=" + s2.L().toFixed(4));
             });
             var p2 = board.create('point', [3, -2], { color: 'green' }).on('drag', function () {
-                $('#linec').html("c=" + s1.L().toFixed(4));
-                $('#linea').html("a=" + L2.L().toFixed(4));
-                s1.setLabelText("c=" + s1.L().toFixed(4));
-                L2.setLabelText("a=" + L2.L().toFixed(4));
+                $('#linec').html("c=" + s3.L().toFixed(4));
+                $('#linea').html("a=" + s1.L().toFixed(4));
+                s3.setLabelText("c=" + s3.L().toFixed(4));
+                s1.setLabelText("a=" + s1.L().toFixed(4));
             });
             var p3 = board.create('point', [0, 0], { color: 'blue' }).on('drag',  function () {
-                $('#linea').html("a=" + L2.L().toFixed(4));
-                $('#lineb').html("b=" + L1.L().toFixed(4));
-                L2.setLabelText("a=" + L2.L().toFixed(4));
-                L1.setLabelText("b=" + L1.L().toFixed(4));
+                $('#linea').html("a=" + s1.L().toFixed(4));
+                $('#lineb').html("b=" + s2.L().toFixed(4));
+                s1.setLabelText("a=" + s1.L().toFixed(4));
+                s2.setLabelText("b=" + s2.L().toFixed(4));
             });
 
             // Notice that I have varaibles p1, p2, and p3 holding reference to these point objects.
@@ -94,47 +96,44 @@
             // Line documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Line.html
             // Segment documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Segment.html
 
-            var L1 = board.create('segment', [p1, p3], { strokeWidth: 3, color: 'gray', withLabel: true});
-            var L2 = board.create('segment', [p2, p3], { strokeWidth: 3, color: 'gray', withLabel: true });
-            var s1 = board.create('segment', [p1, p2], { strokeWidth: 2, color: 'lightgray', dash: 2, withLabel: true });
-            s1.setLabelText("c=" + s1.L().toFixed(2));
+            var s2 = board.create('segment', [p1, p3], { strokeWidth: 3, color: 'gray', withLabel: true});
+            var s1 = board.create('segment', [p2, p3], { strokeWidth: 3, color: 'gray', withLabel: true });
+            var s3 = board.create('segment', [p1, p2], { strokeWidth: 2, color: '#A9A9A9', dash: 2, withLabel: true });
+            s3.setLabelText("c=" + s3.L().toFixed(2));
+            s3.labelColor('gray');
+            s2.setLabelText("b=" + s2.L().toFixed(2));
+            s2.labelColor('gray');
+            s1.setLabelText("a=" + s1.L().toFixed(2));
             s1.labelColor('gray');
-            L1.setLabelText("b=" + L1.L().toFixed(2));
-            L1.labelColor('gray');
-            L2.setLabelText("a=" + L2.L().toFixed(2));
-            L2.labelColor('gray');
         
            
 
             //Step 4: Look what other cool things we can do... a sector?  Sounds cool
             //Sector: http://jsxgraph.uni-bayreuth.de/docs/symbols/Sector.html
 
-            board.create('sector', [L2, L1, -1, -1, 1.0], { fillColor: 'blue', strokeColor: 'pink', withlabel:true, name: C });
-            board.create('sector', [L1, s1, 1, 1, 1.0], { fillColor: 'red', strokeColor: 'pink', withlabel: true , name: A });
-            board.create('sector', [s1, L2, -1, 1, 1.0], { fillColor: 'green', strokeColor: 'pink', withlabel: true, name: B });
-            console.log("hi" +s1.L());
-            $('#linec').html("c=" + s1.L().toFixed(4));
-            $('#linea').html("a=" + L2.L().toFixed(4));
-            $('#lineb').html("b=" + L1.L().toFixed(4));
+            board.create('sector', [s1, s2, -1, -1, 1.0], { fillColor: 'blue', strokeColor: 'pink', withlabel:true, name: C });
+            board.create('sector', [s2, s3, 1, 1, 1.0], { fillColor: 'red', strokeColor: 'pink', withlabel: true , name: A });
+            board.create('sector', [s3, s1, -1, 1, 1.0], { fillColor: 'green', strokeColor: 'pink', withlabel: true, name: B });
+            console.log("hi" +s3.L());
+            $('#linec').html("c=" + s3.L().toFixed(4));
+            $('#linea').html("a=" + s1.L().toFixed(4));
+            $('#lineb').html("b=" + s2.L().toFixed(4));
             function pyth(a, b, c)
             {
                 return (b * b + c * c - a * a) / (2 * b * c);
             }
 
             function A() {
-                return ((Math.acos(pyth(L2.L(), L1.L(), s1.L()))) * (180 / 3.14159)) .toFixed(2);
+                return ((Math.acos(pyth(s1.L(), s2.L(), s3.L()))) * (180 / 3.14159)) .toFixed(2);
             }
             function B() {
-                return ((Math.acos(pyth(L1.L(), L2.L(), s1.L()))) * (180 / 3.14159)) .toFixed(2);
+                return ((Math.acos(pyth(s2.L(), s1.L(), s3.L()))) * (180 / 3.14159)) .toFixed(2);
             }
             function C() {
-                return ((Math.acos(pyth(s1.L(), L2.L(), L1.L()))) * (180 / 3.14159)).toFixed(2);
+                return ((Math.acos(pyth(s3.L(), s1.L(), s2.L()))) * (180 / 3.14159)).toFixed(2);
             }
         
-            // How the heck did I get those numbers to work?  Random goofing around and the documentation!
-            // But I finally got it and it looks nice! I bet jsxGraph can give that angle to us... just got to figure out how.
-
-            // Challenge: Go try to make a graph yourself!
+          
 
         });
 
