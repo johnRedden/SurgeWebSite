@@ -31,8 +31,36 @@
 				$("#formx").on("change", "#a", onAChanged
 				).on("change", "#b", onBChanged
 				).on("change", "#c", onCChanged);
+				$(".btn").on("click", function(args)
+				{
+					// Variables
+					var	a=	$("#a");
+					var	b=	$("#b");
+					var	c=	$("#c");
+					
+					a.val("");
+					b.val("");
+					c.val("");
+					$(".output").html("\\[ a^{2} + b^{2} = c^{2} \\]");
+					updateMathJax();
+				});
 				updateMathJax();
 			});
+			
+			function hasAtLeastTwoSidesProvided(a, b, c)
+			{
+				// Variables
+				var	temp=	0;
+				
+				if(a.val()!== "")
+					temp++;
+				if(b.val()!== "")
+					temp++;
+				if(c.val()!== "")
+					temp++;
+				
+				return (temp> 1);
+			}
 			
 			function onAChanged(args, outside)
 			{
@@ -102,6 +130,9 @@
 			
 			function findMissingSide(a, b, c, id, outside)
 			{
+				if(!hasAtLeastTwoSidesProvided(a, b, c))
+					return;
+				
 				// Variables
 				var	tempA, tempB, tempC;
 				var	nana=	isNaN(parseFloat(a.val()));
@@ -176,6 +207,7 @@
 				</div>
 				<div class="panel-footer">
 					Results: <span class="output">\[ a^{2} + b^{2} = c^{2} \]</span>
+					<span class="btn btn-primary">Clear All</span>
 				</div>
 			</div>
 		</div>
