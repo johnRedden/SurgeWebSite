@@ -168,11 +168,11 @@
              
             }
             function calculate() {
-                var asciiMath = $('.line1').html();
-                //using the asciiMath to javascriptMath library mathjs.js
-                var jsMath = mathjs(asciiMath);
-                var result = eval(jsMath); //eval is a javascript function
-                $('.line2').html("= " + result);
+				var asciiMath = $('.line1').html().replace(/sqrt/g, "Math.sqrt");
+				//using the asciiMath to javascriptMath library mathjs.js
+				var jsMath = mathjs(asciiMath);
+				var result = eval(jsMath); //eval is a javascript function
+				$('.line2').html("= " + result);
             }
         </script>
 		
