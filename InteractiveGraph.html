@@ -1,0 +1,114 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SURGE jsxGraph Tutorial</title>
+
+    <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+    <script type="text/javascript" src="js/mathjs.js"></script>
+
+    <!-- include the jsxGraph sytle sheet-->
+    <link href="css/jsxgraph.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div class="container ">
+        <h1 class="text-center">Graph</h1>
+        <br />
+        <div class="panel panel-default center-block" style="width:50%;text-align:center">
+            
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group container-fluid">
+                        <label for="userInput">Enter Something to be Graphed</label>
+                        <div class="row">
+                 
+                            <input class="form-control center-block input-lg" id="userstr" type="text" style="width:50%" placeholder="x^2">
+                           <br />
+                             <label for="userInput">(If you can't see the graph, zoom out)</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        
+        <div id="myBox" class="jxgbox clearfix center-block" style='width:500px; height:350px; border: 2px solid lightgray'></div>
+       
+
+    </div>
+    
+    <script>
+        var board;
+        var graph;
+        // Wait for the html document to be ready
+        $(document).ready(function () {
+            // Step 1: Begin by initializing the jsxGraph and set a reference to it called board or whatever you want.
+            // Lots of options (called attributes) to choose from
+            // takes some getting used to... but here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/JXG.Board.html
+
+            board = JXG.JSXGraph.initBoard('myBox',
+                     {
+                         boundingbox:[-8,4,8,-4],
+                         axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                         grid: { strokeWidth: 0.75 },
+                         showCopyright: false,
+                         showNavigation: false,
+                         keepaspectratio: false, //square graph coming in
+                         zoom: {
+                            factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                            factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                            wheel: true,   // allow zooming by mouse wheel
+                            needshift: false, // mouse wheel zooming needs pressing of the shift key
+                             eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                         },
+                         pan: {
+                            enabled: true,   // Allow panning
+                            needTwoFingers: true, // panningis done with two fingers on touch devices
+                            needshift: false, // mouse panning needs pressing of the shift key
+                         }
+
+                     });
+        $("#userstr").on("keyup", calculate);
+
+        });
+        var userstr
+        function calculate() {
+           
+                board.removeObject(graph);
+                var asciiMath = $('#userstr').val();
+                //using the asciiMath to javascriptMath library mathjs.js
+                var jsMath = mathjs(asciiMath);
+                var result;
+                eval("result = function(x){ with(Math) return "+jsMath+"; }");
+                graph= board.create("functiongraph", [result])
+            
+            }
+        
+    </script>
+
+    
+
+</body>
+
+</html>
+                            
+    
+        
+

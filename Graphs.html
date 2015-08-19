@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><!--just delete user-scalable=no if you want to be able to zoom on the website-->
+    <link rel="icon"
+          type="image/ico"
+          href="images/bolt.ico">
+    <title>Surge | Graphs</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/javascriptfilesource.js"></script>
+
+    <!--source files and their links in case of updates for future reference
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+<link rel="stylesheet" href="css/items.css">
+</head>
+
+<body>
+    <!--navbar start-->
+    <!--navbar start-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><kbd>COSMathAppSURGE.com</kbd></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="algebra.html">Algebra</a></li>
+                    <li><a href="trigonometry.html">Trigonometry</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                    <li><a href="Graphs.html">Graphs</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="group2.html">Members</a></li>
+                            <li><a href="tech.html">Technology</a></li>
+                            <li><a href="http://www.cos.edu/academics/mathengineering/surge/Pages/default.aspx">COS Surge</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="http://www.cos.edu/Pages/default.aspx">COS Main</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav><!--navbar end-->
+    <!--main page content in a Bootstrap 'container'-->
+    <div class="container">
+
+        <!--Container for jsxgraph demo-->
+        <div class="well topContainer left">
+            <div class="row">
+                <div class="col-sm-3">
+                    <a href="graphs/jsxGraph01.html" target="_blank">
+                        <img class="img-thumbnail" src="images/jsxGraphPNG.png" alt="IMG" title="jsxGraph Demo" data-toggle="tooltip">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <h3>jsxGraph Demonstration</h3>
+                    <p>JSXGraph is a cross-browser library for interactive geometry, function plotting, charting, and data visualization in a web browser. Developed at the University of Bayreuth, Germany and open source released under the MIT license.</p>
+                    <ul>
+                        <li>Learnng how to use an external library.</li>
+                        <li>Reading documentation and implemeting functionality.</li>
+                        <li>Right-click to view source.</li>
+                    </ul>
+                    <a class="btn btn-primary" href="graphs/jsxGraph01.html" target="_blank">Launch Graph<span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+        </div>
+        <!--End container -->
+        <!--Container for Sine graph-->
+        <div class="well right">
+            <div class="row">
+				<div class="col-sm-3">
+                    <div>
+                        <br />
+                        <a href="graphs/SinGraph.html" target="_blank">
+                            <img class="img-thumbnail" src="images/sinGraph.png" alt="IMG" title="Trig. Graphs" data-toggle="tooltip">
+                        </a>
+                    </div>
+                </div><!--/-->
+                <div class="col-sm-9">
+                    <h3>Sample Graphs</h3>
+                    <p>Graphs can be hard coded and the graph options are numerous. For example we can zoom and pan.</p>
+                    <ul>
+                        <li>Configuring jsxGraphs</li>
+                        <li>Incremental programming and testing.</li>
+                        <li>Right-click to view source.</li>
+                    </ul>
+                    <a class="btn btn-primary" href="graphs/SinGraph.html" target="_blank">Launch Graphs<span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                </div>
+                <!--<div class="col-sm-3">
+                    <div>
+                        <br />
+                        <a href="graphs/SinGraph.html" target="_blank">
+                            <img class="img-thumbnail" src="images/sinGraph.png" alt="IMG" title="Trig. Graphs" data-toggle="tooltip">
+                        </a>
+                    </div>
+                </div>/-->
+            </div>
+        </div>
+        <!--End container -->
+        <!--Container for General Graphing app-->
+        <div class="well left">
+            <div class="row">
+                <div class="col-sm-3">
+                    <a href="" target="_blank">
+                        <img class="img-thumbnail" src="images/generalGrapher.png" alt="IMG" title="General Grapher" data-toggle="tooltip">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <h3>General Graphing App</h3>
+                    <p>Type in a function, click the button, and see the graph. COMING SOON</p>
+                    <ul>
+                        <li>Dynamic interaction</li>
+                        <li>Bootstrap for the buttons and interface.</li>
+                        <li>Dynamic MathJax for real-time math rendering. Right-click to view source.</li>
+                    </ul>
+                    <a class="btn btn-primary" href="graphs/InteractiveGraph.html" target="_blank">Launch Grapher <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+        </div>
+        <!--End container-->
+
+
+    </div>
+    <!--end main page-->
+
+
+    
+    <footer>
+        <hr>
+        <div class="text-center  text-muted"><span class="glyphicon glyphicon-copyright-mark"></span> 2015 Open Source <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a> (MIT)  COS SURGE</div>
+        <hr>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            // add bootstrap class 'active' to li in nav bar to highlight
+            $('nav [href="Graphs.html"]').parent().addClass('active');
+
+        });
+
+    </script>
+
+</body>
+</html>                                		

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SURGE jsxGraph Tutorial</title>
+
+    <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/jsxgraphcore.js"></script>
+
+    <!-- include the jsxGraph sytle sheet-->
+    <link href="../css/jsxgraph.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container ">
+        <div class="text-center">
+            <h1>Trigonometry Graphs</h1>
+
+            <!--create a div to contain the graph -->
+			<b>Sin(x)</b>
+            <div id="myBox" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <br />
+			<b>Cos(x)</b>
+            <div id="myBoxC" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <br />
+			<b>Tan(x)</b>
+            <div id="myBoxT" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+            <br />
+
+            <div class="well">
+                Drag to pan, use the mousewheel to zoom.
+            </div>
+            <div id="linea"></div>
+            <div id="lineb"></div>
+            <div id="linec"></div>
+        </div>
+   
+    </div>
+    <script>
+
+        // Wait for the html document to be ready
+        $(document).ready(function () {
+            // Step 1: Begin by initializing the jsxGraph and set a reference to it called board or whatever you want.
+            // Lots of options (called attributes) to choose from
+            // takes some getting used to... but here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/JXG.Board.html
+            var board = JXG.JSXGraph.initBoard('myBox',
+                     {
+                         boundingbox:[-7,2,7,-2],
+                         axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                         grid: { strokeWidth: 0.75 },
+                         showCopyright: false,
+                         showNavigation: false,
+                         keepaspectratio: false, //square graph coming in
+                         zoom: {
+                            factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                            factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                            wheel: true,   // allow zooming by mouse wheel
+                            needshift: false, // mouse wheel zooming needs pressing of the shift key
+                             eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                         },
+                         pan: {
+                            enabled: true,   // Allow panning
+                            needTwoFingers: true, // panningis done with two fingers on touch devices
+                            needshift: false, // mouse panning needs pressing of the shift key
+                         }
+                         
+                     });
+          
+            var boardC = JXG.JSXGraph.initBoard('myBoxC',
+                      {
+                          boundingbox: [-7, 2, 7, -2],
+                          axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                          grid: { strokeWidth: 0.75 },
+                          showCopyright: false,
+                          showNavigation: false,
+                          keepaspectratio: false, //square graph coming in
+                          zoom: {
+                              factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                              factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                              wheel: true,   // allow zooming by mouse wheel
+                              needshift: false, // mouse wheel zooming needs pressing of the shift key
+                              eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                          },
+                          pan: {
+                              enabled: true,   // Allow panning
+                              needTwoFingers: true, // panningis done with two fingers on touch devices
+                              needshift: false, // mouse panning needs pressing of the shift key
+                          }
+                      });
+            var boardT = JXG.JSXGraph.initBoard('myBoxT',
+                  {
+                      boundingbox: [-7, 2, 7, -2],
+                      axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                      grid: { strokeWidth: 0.75 },
+                      showCopyright: false,
+                      showNavigation: false,
+                      keepaspectratio: false, //square graph coming in
+                      zoom: {
+                          factorX: 1.25,  // horizontal zoom factor (multiplied to JXG.Board#zoomX)
+                          factorY: 1.25,  // vertical zoom factor (multiplied to JXG.Board#zoomY)
+                          wheel: true,   // allow zooming by mouse wheel
+                          needshift: false, // mouse wheel zooming needs pressing of the shift key
+                          eps: 0.1        // minimal values of JXG.Board#zoomX and JXG.Board#zoomY
+                      },
+                      pan: {
+                          enabled: true,   // Allow panning
+                          needTwoFingers: true, // panningis done with two fingers on touch devices
+                          needshift: false, // mouse panning needs pressing of the shift key
+                      }
+                  });
+            // Create a function graph for f(x) = sin(x)
+            var Sine = board.create('functiongraph',
+                                 [function(x){ return Math.sin(x);}]
+            );
+
+            // Create a function graph for f(x) = cos(x)
+            var Sine = boardC.create('functiongraph',
+                                 [function (x) { return Math.cos(x); }]
+            );
+            // Create a function graph for f(x) = tan(x) 
+            var Tan = boardT.create('functiongraph',
+                                 [function (x) { return Math.tan(x); }]
+            );
+           
+
+            // Notice that I have varaibles p1, p2, and p3 holding reference to these point objects.
+            // Also, notice that the blue dot at the origin is not draggable, why?  Try moving them around.
+
+            // Step 3: Connect the dots.  Let's use lines through AC and BC and a segment AB.
+            // Line documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Line.html
+            // Segment documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Segment.html
+
+           
+          
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

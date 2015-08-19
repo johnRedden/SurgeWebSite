@@ -1,0 +1,145 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SURGE jsxGraph Demonstration</title>
+
+    <!-- This is the bootstrap and jquery. Mess with it as much as you like /-->
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/jsxgraphcore.js"></script>
+
+    <!-- include the jsxGraph sytle sheet-->
+    <link href="../css/jsxgraph.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="text-center">
+            <h1>jsxGraph Demonstration</h1>
+
+            <!--create a div to contain the graph -->
+            <div id="myBox" class="jxgbox center-block" style='width:400px; height:250px; border: 1px solid lightgray'></div>
+
+            <br />
+        </div>
+        <div class="well text-center">
+            Move A, B and C .<br />
+            Right click to view the source and read the tutorial.
+            <div id="linea"></div>
+            <div id="lineb"></div>
+            <div id="linec"></div>
+        </div>
+
+    </div>
+
+
+    <script>
+        
+        // Wait for the html document to be ready
+        $(document).ready(function () {
+            // Step 1: Begin by initializing the jsxGraph and set a reference to it called board or whatever you want.
+            // Lots of options (called attributes) to choose from
+            // takes some getting used to... but here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/JXG.Board.html
+            var board = JXG.JSXGraph.initBoard('myBox',
+                     {
+                         boundingbox:[-4,4,4,-4],
+                         axis: { ticks: { drawLabels: true }, firstArrow: true, strokeColor: 'black' },
+                         grid: { strokeWidth: 0.75 },
+                         showCopyright: false,
+                         showNavigation: false,
+                         keepaspectratio: false //square graph coming in
+                     });
+
+            // Step 2: add some graphs.  I suppose we start with points.
+            // Here is the documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Point.html
+            var segmenta =s1
+            var segmentb = s2
+            var segmentc = s3
+            var p1 = board.create('point', [3, 2], { color: 'red' }).on('drag',function(){
+                $('#lineb').html("b=" + s2.L().toFixed(4));
+                $('#linec').html("c=" + s3.L().toFixed(4));
+                s3.setLabelText("c=" + s3.L().toFixed(4));
+                s2.setLabelText("b=" + s2.L().toFixed(4));
+            });
+            var p2 = board.create('point', [3, -2], { color: 'green' }).on('drag', function () {
+                $('#linec').html("c=" + s3.L().toFixed(4));
+                $('#linea').html("a=" + s1.L().toFixed(4));
+                s3.setLabelText("c=" + s3.L().toFixed(4));
+                s1.setLabelText("a=" + s1.L().toFixed(4));
+            });
+            var p3 = board.create('point', [0, 0], { color: 'blue' }).on('drag',  function () {
+                $('#linea').html("a=" + s1.L().toFixed(4));
+                $('#lineb').html("b=" + s2.L().toFixed(4));
+                s1.setLabelText("a=" + s1.L().toFixed(4));
+                s2.setLabelText("b=" + s2.L().toFixed(4));
+            });
+
+            // Notice that I have varaibles p1, p2, and p3 holding reference to these point objects.
+            // Also, notice that the blue dot at the origin is not draggable, why?  Try moving them around.
+
+            // Step 3: Connect the dots.  Let's use lines through AC and BC and a segment AB.
+            // Line documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Line.html
+            // Segment documentation: http://jsxgraph.uni-bayreuth.de/docs/symbols/Segment.html
+
+            var s2 = board.create('segment', [p1, p3], { strokeWidth: 3, color: 'gray', withLabel: true});
+            var s1 = board.create('segment', [p2, p3], { strokeWidth: 3, color: 'gray', withLabel: true });
+            var s3 = board.create('segment', [p1, p2], { strokeWidth: 2, color: '#A9A9A9', dash: 2, withLabel: true });
+            s3.setLabelText("c=" + s3.L().toFixed(2));
+            s3.labelColor('gray');
+            s2.setLabelText("b=" + s2.L().toFixed(2));
+            s2.labelColor('gray');
+            s1.setLabelText("a=" + s1.L().toFixed(2));
+            s1.labelColor('gray');
+        
+           
+
+            //Step 4: Look what other cool things we can do... a sector?  Sounds cool
+            //Sector: http://jsxgraph.uni-bayreuth.de/docs/symbols/Sector.html
+
+            board.create('sector', [s1, s2, -1, -1, 1.0], { fillColor: 'blue', strokeColor: 'pink', withlabel:true, name: C });
+            board.create('sector', [s2, s3, 1, 1, 1.0], { fillColor: 'red', strokeColor: 'pink', withlabel: true , name: A });
+            board.create('sector', [s3, s1, -1, 1, 1.0], { fillColor: 'green', strokeColor: 'pink', withlabel: true, name: B });
+            console.log("hi" +s3.L());
+            $('#linec').html("c=" + s3.L().toFixed(4));
+            $('#linea').html("a=" + s1.L().toFixed(4));
+            $('#lineb').html("b=" + s2.L().toFixed(4));
+            function pyth(a, b, c)
+            {
+                return (b * b + c * c - a * a) / (2 * b * c);
+            }
+
+            function A() {
+                return ((Math.acos(pyth(s1.L(), s2.L(), s3.L()))) * (180 / 3.14159)) .toFixed(2);
+            }
+            function B() {
+                return ((Math.acos(pyth(s2.L(), s1.L(), s3.L()))) * (180 / 3.14159)) .toFixed(2);
+            }
+            function C() {
+                return ((Math.acos(pyth(s3.L(), s1.L(), s2.L()))) * (180 / 3.14159)).toFixed(2);
+            }
+        
+          
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

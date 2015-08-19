@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Pythagorean Calculator</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<style>
+			
+			.pctb
+			{
+				width:	96px;
+				margin-top:	4px;
+				margin-right:	4px;
+				margin-left:	4px;
+				padding:	0px;
+			}
+			
+			#formx
+			{
+				margin:	0px;
+				padding:	0px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript">
+			$(document).ready(function(args)
+			{
+				$("#formx").on("change", "#a", onAChanged
+				).on("change", "#b", onBChanged
+				).on("change", "#c", onCChanged);
+				$(".btn").on("click", function(args)
+				{
+					// Variables
+					var	a=	$("#a");
+					var	b=	$("#b");
+					var	c=	$("#c");
+					
+					a.val("");
+					b.val("");
+					c.val("");
+					$(".output").html("\\[ a^{2} + b^{2} = c^{2} \\]");
+					updateMathJax();
+				});
+				updateMathJax();
+			});
+			
+			function hasAtLeastTwoSidesProvided(a, b, c)
+			{
+				// Variables
+				var	temp=	0;
+				
+				if(a.val()!== "")
+					temp++;
+				if(b.val()!== "")
+					temp++;
+				if(c.val()!== "")
+					temp++;
+				
+				return (temp> 1);
+			}
+			
+			function onAChanged(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				findMissingSide(a, b, c, 0, outside);
+			}
+			
+			function onUpdateA(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				a.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(b.val()), 2))).toFixed(2));
+				if(!outside)
+					onAChanged(args, outside);
+			}
+			
+			function onBChanged(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				findMissingSide(a, b, c, 1, outside);
+			}
+			
+			function onUpdateB(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				b.val((Math.sqrt(Math.pow(parseFloat(c.val()), 2)-Math.pow(parseFloat(a.val()), 2))).toFixed(2));
+				if(!outside)
+					onBChanged(args, outside);
+			}
+			
+			function onCChanged(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				findMissingSide(a, b, c, 2, outside);
+			}
+			
+			function onUpdateC(args, outside)
+			{
+				// Variables
+				var	a=	$("#a");
+				var	b=	$("#b");
+				var	c=	$("#c");
+				
+				c.val((Math.sqrt(Math.pow(parseFloat(a.val()), 2)+Math.pow(parseFloat(b.val()), 2))).toFixed(2));
+				if(!outside)
+					onCChanged(args, outside);
+			}
+			
+			function findMissingSide(a, b, c, id, outside)
+			{
+				if(!hasAtLeastTwoSidesProvided(a, b, c))
+					return;
+				
+				// Variables
+				var	tempA, tempB, tempC;
+				var	nana=	isNaN(parseFloat(a.val()));
+				var	nanb=	isNaN(parseFloat(b.val()));
+				var	nanc=	isNaN(parseFloat(c.val()));
+				var	aoverc=	parseFloat(a.val())> parseFloat(c.val());
+				var	boverc=	parseFloat(b.val())> parseFloat(c.val());
+				
+				if(nana || nanb || nanc)
+				{
+					if(nana)
+						onUpdateA({}, true);
+					if(nanb)
+						onUpdateB({}, true);
+					if(nanc)
+						onUpdateC({}, true);
+				}
+				else
+				{
+					if(aoverc || boverc)
+					{
+						onUpdateC({}, true);
+						onUpdateA({}, true);
+						onUpdateB({}, true);
+					}
+					else if(id=== 0)
+					{
+						onUpdateB({},true);
+						onUpdateA({},true);
+						onUpdateC({},true);
+					}
+					else
+					{
+						onUpdateA({}, true);
+						onUpdateB({}, true);
+						onUpdateC({}, true);
+					}
+				}
+				
+				$(".output").html
+				(
+					"\\["+
+					parseFloat(a.val()).toFixed(2)+"^{2}"+
+					" + "+
+					parseFloat(b.val()).toFixed(2)+"^{2}"+
+					" = "+
+					parseFloat(c.val()).toFixed(2)+"^{2}"+
+					"\\]"
+				);
+				updateMathJax();
+			}
+			
+			function updateMathJax()
+			{
+				MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output"]);
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="panel panel-default center-block" style="width:50%; text-align: center;margin-top:16px">
+				<div class="panel-heading">
+					Pythagorean Calculator
+					<h6>Updates when clicked out or tabbed out of the text box</h6>
+				</div>
+				<div class="panel-body">
+					<form id="formx">
+						<input id="a" class="pctb" type="text" placeholder="a" />
+						<input id="b" class="pctb" type="text" placeholder="b" />
+						<input id="c" class="pctb" type="text" placeholder="c" />
+					</form>
+				</div>
+				<div class="panel-footer">
+					Results: <span class="output">\[ a^{2} + b^{2} = c^{2} \]</span>
+					<span class="btn btn-primary">Clear All</span>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
